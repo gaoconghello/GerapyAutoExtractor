@@ -1,0 +1,584 @@
+<!DOCTYPE html><html lang="zh-CN" class="js" data-dpr="1" style="font-size: 54px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="shortcut icon" href="/wp-content/themes/liangziwei/imgnew/favicon.ico">
+        <link rel="pingback" href="https://www.qbitai.com/xmlrpc.php">
+        <script src="https://zz.bdstatic.com/linksubmit/push.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-6P7RXJKJRT&amp;cx=c&amp;_slc=1"></script><script src="https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5"></script><script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代 | 量子位</title>
+
+<!-- All in One SEO Pack 2.12 by Michael Torbert of Semper Fi Web Design[506,563] -->
+<meta name="description" content="在V-Bench评估中性能表现卓越">
+
+<meta name="keywords" content="昆仑万维,视频生成">
+
+<link rel="canonical" href="https://www.qbitai.com/2025/04/275232.html">
+			<script type="text/javascript">
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-138537228-1', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+			<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="量子位 » Feed" href="https://www.qbitai.com/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » 评论Feed" href="https://www.qbitai.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代评论Feed" href="https://www.qbitai.com/2025/04/275232.html/feed">
+<link rel="stylesheet" id="wp-block-library-css" href="https://www.qbitai.com/wp-includes/css/dist/block-library/style.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style1-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/bootstrap.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style2-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/swiper.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style3-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/font-awesome.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style4-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/base.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style5-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style6-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/wbshare.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style7-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/zk_style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style8-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/ai_style.css?ver=5.0.15" type="text/css" media="all">
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/popper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.offcanvas.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible_css.debug.js?ver=5.0.15"></script><style>@charset "utf-8";html{color:#000;background:#fff;/*overflow-y:scroll;*/-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible.debug.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/swiper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/qrcode.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/yao.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ScrollPic.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/zktag.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery-1.7.1.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ai_playBox.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel="https://api.w.org/" href="https://www.qbitai.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.qbitai.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.qbitai.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="具身空间数据技术的路线之争：合成重建VS全端生成" href="https://www.qbitai.com/2025/04/275178.html">
+<link rel="next" title="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" href="https://www.qbitai.com/2025/04/275282.html">
+<meta name="generator" content="WordPress 5.0.15">
+<link rel="shortlink" href="https://www.qbitai.com/?p=275232">
+<link rel="alternate" type="application/json+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275232.html">
+<link rel="alternate" type="text/xml+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275232.html&amp;format=xml">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		    <!--[if IE 8]>
+        <link id="liangziwei-ie7-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie8_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <!--[if IE 9]>
+            <link id="liangziwei-ie8-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie9_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <script type="text/javascript">
+        $("#top_search").click(function(){
+            $("#search").toggle()
+        });
+        $(document).click(function(){
+            $(".weixin_pop").hide();
+        });
+    </script>
+    <style type="text/css">
+        blockquote {
+            margin: 1.4em 0;
+            padding-left: 1em;
+            color: #646464;
+            border-left: 3px solid #D3D3D3;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 40px;
+            margin-inline-end: 40px;
+        }
+    </style>
+</head>
+<body class="body-offcanvas" style="font-size: 12px;">
+<header class="top">
+    <div class="top_logo">
+        <div class="nav_box">
+                        <button type="button" class="navbar-toggle offcanvas-toggle js-offcanvas-has-events" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;"></button>
+            <nav class="navbar navbar-default navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-fade offcanvas-transform js-offcanas-done" role="navigation" id="js-bootstrap-offcanvas">
+                                    <div class="container-fluid"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav navbar-nav"><li id="menu-item-110" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-110"><a href="http://www.qbitai.com/">首页</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-107"><a href="https://www.qbitai.com/category/%e8%b5%84%e8%ae%af">资讯</a></li>
+<li id="menu-item-1907" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1907"><a href="https://www.qbitai.com/category/ebandeng">数码</a></li>
+<li id="menu-item-26804" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26804"><a href="https://www.qbitai.com/category/auto">智能车</a></li>
+<li id="menu-item-110561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-110561"><a href="https://www.qbitai.com/category/zhiku">智库</a></li>
+<li id="menu-item-17709" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17709"><a href="https://www.qbitai.com/category/huodong">活动</a></li>
+<li id="menu-item-10902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10902"><a href="https://www.qbitai.com/meet/meet2025/">MEET大会</a></li>
+<li id="menu-item-53733" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-53733"><a href="https://www.qbitai.com/meet/aigc2024/">AIGC</a></li>
+</ul></div>                            </nav>
+                    </div>
+        <div class="logo"><a href="https://www.qbitai.com/"></a></div>
+        <div class="top_r_icons">
+                        <div class="top_weixin"><a href="javascript:void(0)" class="biaojiwei"><i class="fa fa-weixin"></i></a>
+                                <div class="weixin_pop" style="display:none" id="pophead">
+               <p>扫码关注量子位</p>
+               <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+        </div>
+         </div>
+            <div class="top_weibo"><a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i></i></a></div>
+            
+<!--             <div class="top_search">
+                <form role="search" method="get" class="search-form" action="https://www.qbitai.com/" id="search">
+                <label>
+                    <input type="search" class="search-field" placeholder="搜索…" value="" name="s">
+                </label>
+                <button type="submit" class="search-submit"></button>
+                </form>
+            </div> -->
+        </div>
+        <script type="text/javascript">
+        $('.biaojiwei').click(function(){
+            $('.biaojiwei').click(function(event){
+                event.stopPropagation();
+                $('#pophead').show();
+            })
+            $('.weixin_pop').click(function(){
+                $('.weixin_pop').hide();
+            })
+        })
+        </script>
+        <div class="share_box">
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+		
+
+<div class="main">
+    	<div class="content">
+      <!-- articlead begin-->
+                    <!-- articlead end-->
+        	<div class="article">
+				     <h1>SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代</h1>
+    			   <div class="article_info">
+             <span class="author"><img alt="量子位的朋友们" src="http://www.qbitai.com/wp-content/uploads/2019/06/200-100x100.jpg" class="avatar avatar-100 photo" height="100" width="100"><em><a href="https://www.qbitai.com/author/qbitai" title="由量子位的朋友们发布" rel="author">量子位的朋友们</a></em></span>
+                          <span class="date">2025-04-21</span>
+             <span class="time">10:28:40</span>
+          <span class="from">
+          来源：<a href="http://www.qbitai.com" target="blank" rel="nofllow">量子位</a>            </span></div>
+                          <!--摘要样式-->
+            <div class="zhaiyao"><p>在V-Bench评估中性能表现卓越</p>
+</div>                			<p>4月21日，昆仑万维SkyReels团队正式发布并开源SkyReels-V2——全球首个使用扩散强迫（Diffusion-forcing）框架的无限时长电影生成模型，其通过结合多模态大语言模型（MLLM）、多阶段预训练（Multi-stage Pretraining）、强化学习（Reinforcement Learning）和扩散强迫（Diffusion-forcing）框架来实现协同优化。</p>
+<p><img class="alignnone size-full wp-image-275233 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3.jpg" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="230" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3.jpg 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3-300x83.jpg 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3-768x212.jpg 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<p>回顾过去一年，视频生成技术在扩散模型和自回归框架的推动下取得了显著进展，但在提示词遵循、视觉质量、运动动态和视频时长的协调上仍面临重大挑战。</p>
+<p>现有技术在提升稳定的视觉质量时往往牺牲运动动态效果，为了优先考虑高分辨率而限制视频时长（通常为5-10秒），并且由于通用多模态大语言模型（MLLM）无法解读电影语法（如镜头构图、演员表情和摄像机运动），导致镜头感知生成能力不足。这些相互关联的限制阻碍了长视频的逼真合成和专业电影风格的生成。</p>
+<p>为了解决这些痛点，SkyReels-V2应运而生，它不仅在技术上实现了突破，还提供多了多种有用的应用场景，包括故事生成、图生视频、运镜专家和多主体一致性视频生成（SkyReels-A2）。</p>
+<p>SkyReels-V2现已支持生成30秒、40秒的视频，且具备生成高运动质量、高一致性、高保真视频的能力。</p>
+<h2><strong>核心技术创新，迈入“无限时长、影视级质量、精准控制”的全新视频生成阶段</strong></h2>
+<p><img class="alignnone size-full wp-image-275235 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3.png" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="244" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3.png 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3-300x88.png 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-3-768x225.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<p style="text-align: right;">图丨SkyReels-V2方法概述</p>
+<p>SkyReels-V2能够达到这样的视频生成效果，源于其多项创新技术：</p>
+<h3><strong>全面的影视级视频理解模型：SkyCaptioner-V1</strong></h3>
+<p>为了提高提示词遵循能力，团队设计了一种结构化的视频表示方法，将多模态LLM的一般描述与子专家模型的详细镜头语言相结合。这种方法能够识别视频中的主体类型、外观、表情、动作和位置等信息，同时通过人工标注和模型训练，进一步提升了对镜头语言的理解能力。</p>
+<p>同时，团队训练了一个统一的视频理解模型 SkyCaptioner-V1，它能够高效地理解视频数据，生成符合原始结构信息的多样化描述。通过这种方式，SkyCaptioner-V1不仅能够理解视频的一般内容，还能捕捉到电影场景中的专业镜头语言，从而显著提高了生成视频的提示词遵循能力。此外，这个模型现在已经开源，可以直接使用。</p>
+<p><img class="size-full wp-image-275243 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-4.png" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="390" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-4.png 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-4-300x141.png 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-4-768x360.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<p style="text-align: right;">图丨在视频理解测试集上的模型综合性能比较中，SkyCaptioner-V1表现优异，超越了SOTA的模型。</p>
+<h3><strong>针对运动的偏好优化</strong></h3>
+<p>现有的视频生成模型在运动质量上表现不佳，主要原因是优化目标未能充分考虑时序一致性和运动合理性。我们通过强化学习（RL）训练，使用人工标注和合成失真数据，解决了动态扭曲、不合理等问题。为了降低数据标注成本，我们设计了一个半自动数据收集管道，能够高效地生成偏好对比数据对。</p>
+<p>通过这种方式，SkyReels-V2在运动动态方面表现优异，能够生成流畅且逼真的视频内容，满足电影制作中对高质量运动动态的需求。</p>
+<h3><strong>高效的扩散强迫框架</strong></h3>
+<p>为了实现长视频生成能力，我们提出了一种扩散强迫（diffusion forcing）后训练方法。与从零开始训练扩散强迫模型不同，我们通过微调预训练的扩散模型，将其转化为扩散强迫模型。这种方法不仅减少了训练成本，还显著提高了生成效率。</p>
+<p>我们采用非递减噪声时间表，将连续帧的去噪时间表搜索空间从&nbsp;<em>O</em>(1<em>e</em>48) 降低到&nbsp;<em>O</em>(1<em>e</em>32)，从而实现了长视频的高效生成。这一创新使得SkyReels-V2能够生成几乎无限时长的高质量视频内容。</p>
+<h3><strong>渐进式分辨率预训练与多阶段后训练优化</strong></h3>
+<p>为了开发一个专业的影视生成模型，我们的多阶段质量保证框架整合了来自三个主要来源的数据：</p>
+<p><strong>通用数据集：</strong>整合了开源资源，包括Koala-36M、HumanVid，以及从互联网爬取的额外视频资源。这些数据提供了广泛的基础视频素材，涵盖了多种场景和动作。</p>
+<p><strong>自收集媒体：</strong>包括280,000多部电影和800,000多集电视剧，覆盖120多个国家（估计总时长超过620万小时）。这些数据为模型提供了丰富的电影风格和叙事结构。</p>
+<p><strong>艺术资源库：</strong>从互联网获取的高质量视频资产，确保生成内容的视觉质量达到专业标准。</p>
+<p>原始数据集规模达到亿级（O(100M)），不同子集根据质量要求在各个训练阶段使用。此外，我们还收集了亿级的概念平衡图像数据，以加速早期训练中生成能力的建立。在此数据基础上，我们首先通过渐进式分辨率预训练建立基础视频生成模型，然后进行四阶段的后续训练增强：</p>
+<p><strong>初始概念平衡的监督微调（SFT）：</strong>通过概念平衡的数据集进行微调，为后续优化提供良好的初始化。</p>
+<p><strong>运动特定的强化学习（RL）训练：</strong>通过偏好优化提升运动动态质量。</p>
+<p><strong>扩散强迫框架（DF）：</strong>实现长视频生成能力。</p>
+<p><strong>高质量SFT：</strong>进一步提升视觉保真度。</p>
+<p>结合富含影视级别数据和多阶段优化方法，我们确保了SkyReels-V2在资源有限的情况下，高效的稳步提升多方面的表现，达到影视级视频生成的水准。</p>
+<h2><strong>在SkyReels-Bench和V-Bench评估中，性能表现卓越</strong></h2>
+<p>为了全面评估SkyReels-V2的性能，我们构建了SkyReels-Bench用于人类评估，并利用开源的V-Bench进行自动化评估。这种双重评估框架使我们能够系统地比较SkyReels-V2和其他最先进的基线模型（包括开源和闭源模型）。</p>
+<h3><strong>SkyReels-Bench评估</strong></h3>
+<p>SkyReels-Bench包含1020个文本提示词，系统性地评估了四个关键维度：指令遵循、运动质量、一致性和视觉质量。该基准旨在评估文本到视频（T2V）和图像到视频（I2V）生成模型，提供跨不同生成范式的全面评估。</p>
+<p>在SkyReels-Bench评估中，SkyReels-V2在指令遵循方面取得了显著进展，同时在保证运动质量的同时不牺牲视频的一致性效果。具体表现如下：</p>
+<p><strong>指令遵循：</strong>SkyReels-V2在运动指令、主体指令、空间关系、镜头类型、表情和摄像机运动的遵循上均优于基线方法。</p>
+<p><strong>运动质量：</strong>在运动动态性、流畅性和物理合理性方面，SkyReels-V2表现出色，生成的运动内容自然且多样。</p>
+<p><strong>一致性：</strong>主体和场景在整个视频中保持高度一致，运动过程有较高的保真度。</p>
+<p><strong>视觉质量：</strong>生成视频在视觉清晰度、色彩准确性和结构完整性上均达到高水平，无明显扭曲或损坏。</p>
+<p><img class="alignnone size-full wp-image-275250 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-5.png" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="210" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-5.png 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-5-300x76.png 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-5-768x194.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<p style="text-align: right;">图丨在SkyReels-Bench的T2V多维度人工评测集下，SkyReels-V2在指令遵循和一致性得到最高水准，同时在视频质量和运动质量上保持第一梯队</p>
+<h3><strong>VBench1.0结果</strong></h3>
+<p>在VBench1.0自动化评估中，SkyReels-V2在总分（83.9%）和质量分（84.7%）上均优于所有对比模型，包括HunyuanVideo-13B和Wan2.1-14B。这一结果进一步验证了SkyReels-V2在生成高保真、指令对齐的视频内容方面的强大能力。<img class="alignnone size-full wp-image-275271 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-6.png" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="224" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-6.png 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-6-300x81.png 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-6-768x207.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<p style="text-align: right;">图丨在V-bench1.0的长prompt版本下，SkyReels-V2超越了所有的开源模型，包括HunyuanVideo-13B和Wan2.1-14B</p>
+<h2>丰富的应用场景，赋能创意实现</h2>
+<p>SkyReels-V2不仅在技术上实现了突破，还为多个实际应用场景提供了强大的支持：</p>
+<h3><strong>故事生成</strong></h3>
+<p>SkyReels-V2能够生成理论上无限时长的视频，通过滑动窗口方法，模型在生成新帧时会参考之前生成的帧和文本提示。为了防止错误积累，我们采用了稳定化技术，通过在之前生成的帧上添加轻微噪声来稳定生成过程。这种方法不仅支持时间上的扩展，还能生成具有连贯叙事的长镜头视频。</p>
+<p>通过一系列叙事文本提示，SkyReels-V2能够编排一个连贯的视觉叙事，跨越多个动作场景，同时保持视觉一致性。这种能力确保了场景之间的平滑过渡，使得动态叙事更加流畅，而不会影响视觉元素的完整性。这一功能特别适合需要复杂多动作序列的应用，如电影制作和广告创作。</p>
+<h3><strong>图像到视频合成</strong></h3>
+<p>SkyReels-V2提供了两种图像到视频（I2V）的生成方法：</p>
+<ul>
+<li>微调全序列文本到视频（T2V）扩散模型（SkyReels-V2-I2V）：通过将输入图像作为条件注入T2V架构中，模型能够利用参考帧进行后续生成。这种方法在384个GPU上仅需10,000次训练迭代即可取得和闭源模型同等级的效果。</li>
+<li>扩散强迫模型与帧条件结合（SkyReels-V2-DF）：通过将第一帧作为干净的参考条件输入扩散框架，无需显式重新训练即可保持时间一致性。</li>
+</ul>
+<p>在SkyReels-Bench的I2V多维度人工评测集下，<strong>SkyReels-V2在所有质量维度上均优于其他开源模型</strong>，并与闭源模型表现相当。</p>
+<p><img class="alignnone size-full wp-image-275272 aligncenter" src="http://www.qbitai.com/wp-content/uploads/2025/04/图片-1-7.png" alt="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" width="832" height="234" srcset="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-7.png 832w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-7-300x84.png 300w, https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-7-768x216.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px"></p>
+<h3><strong>摄像导演功能</strong></h3>
+<p>SkyReels-V2在标注摄像机运动方面表现出色，但我们发现摄像机运动数据的固有不平衡对进一步优化摄影参数提出了挑战。为此，我们专门筛选了约100万个样本，确保基本摄像机运动及其常见组合的平衡表示。通过在384个GPU上进行3,000次迭代的微调实验，我们显著提升了摄影效果，特别是在摄像机运动的流畅性和多样性方面。</p>
+<h3><strong>元素到视频生成</strong></h3>
+<p>基于SkyReels-V2基座模型，我们研发了SkyReels-A2方案，并提出了一种新的多元素到视频（E2V）任务，能够将任意视觉元素（如人物、物体和背景）组合成由文本提示引导的连贯视频，同时确保对每个元素的参考图像的高保真度。这一功能特别适合短剧、音乐视频和虚拟电商内容创作等应用。</p>
+<p>作为首个商业级E2V开源模型，<strong>SkyReels-A2在E2V评估Benchmark A2-Bench中的结果表明，其一致性和质量维度上评估与闭源模型相当。</strong>未来，我们计划扩展框架以支持更多输入模态，如音频和动作，旨在构建一个统一的视频生成系统，以支持更广泛的应用。</p>
+<p>SkyReels-V2的推出标志着视频生成技术迈入了一个新的阶段，为实现高质量、长时间的电影风格视频生成提供了全新的解决方案。它不仅为内容创作者提供了强大的工具，更开启了利用AI进行视频叙事和创意表达的无限可能。</p>
+<p>昆仑万维SkyReels团队仍致力于推动视频生成技术的发展，并将SkyCaptioner-V1和SkyReels-V2系列模型（包括扩散强迫、文本到视频、图像到视频、摄像导演和元素到视频模型）的各种尺寸（1.3B、5B、14B）进行完全开源，以促进学术界和工业界的进一步研究和应用。</p>
+<p style="text-align: right;">*本文系量子位获授权刊载，观点仅为作者所有</p>
+                
+                <!--版权声明-->
+                <div class="line_font"><span></span><em>版权所有，未经授权不得以任何形式转载及使用，违者必究。</em><span></span></div>
+            </div>
+     		<div class="tags"><a href="https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e4%b8%87%e7%bb%b4" rel="tag">昆仑万维</a> <a href="https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90" rel="tag">视频生成</a></div>
+            <!--作者文章列表-->
+    		<div class="person_box">
+            	<a href="#" target="_blank"></a><div class="person_head"><a href="#" target="_blank"><img alt="量子位的朋友们" src="http://www.qbitai.com/wp-content/uploads/2019/06/200.jpg" class="avatar avatar-512 photo" height="512" width="512"><span></span></a><a href="https://www.qbitai.com/author/qbitai" title="由量子位的朋友们发布" rel="author">量子位的朋友们</a></div>
+                <div class="person_con">
+                	<ul>
+                                          <li><a href="https://www.qbitai.com/2025/04/275628.html" rel="bookmark" title="OPPO 旗舰新机 Find X8 Ultra 首发“一键闪记”，阶跃星辰多模态提供技术支持" target="_blank">OPPO 旗舰新机 Find X8 Ultra 首发“一键闪记”，阶跃星辰多模态提供技术支持</a><i>2025-04-22</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/275618.html" rel="bookmark" title="2025ChinaJoy AIGC大会：破晓之光映照智能内容新版图" target="_blank">2025ChinaJoy AIGC大会：破晓之光映照智能内容新版图</a><i>2025-04-22</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/275526.html" rel="bookmark" title="【线下沙龙报名】中国AI出海的创新范式" target="_blank">【线下沙龙报名】中国AI出海的创新范式</a><i>2025-04-21</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/274514.html" rel="bookmark" title="中国AI投资五小龙：南林北曹，东剑西米，中王淮；清一色985理工科背景" target="_blank">中国AI投资五小龙：南林北曹，东剑西米，中王淮；清一色985理工科背景</a><i>2025-04-17</i></li>
+                                      
+                    </ul>
+                </div>
+    		</div>
+            <!--左侧分享-->
+                        <div class="share_pc">
+            	<div class=" share_icon"></div>
+                <div class="share_weixin"><span id="weixin_qrcode"></span>
+        <div id="qrcode" style="display:none;" title="https://www.qbitai.com/2025/04/275232.html">扫码分享至朋友圈<canvas width="256" height="256" style="display: none;"></canvas><img alt="Scan me!" src="data:image/png;base64,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" style="display: block;"></div>
+        <div></div></div>
+
+                <a href="http://service.weibo.com/share/share.php?url=https://www.qbitai.com/2025/04/275232.html&amp;title=SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代&amp;appkey=4017757111&amp;searchPic=true&amp;ralateUid=6105753431" class="share_sina" data-cmd="tsina" title="分享到新浪微博" target="_blank"><div class="share_weibo"></div></a>
+                <a href=""><div class="share_qzone"></div></a>
+            </div>
+                        <script>
+                // 设置参数方式
+                var qrcode = new QRCode('qrcode', {
+                  text: 'https://www.qbitai.com/2025/04/275232.html',
+                  width: 256,
+                  height: 256,
+                  colorDark : '#000000',
+                  colorLight : '#ffffff',
+                  correctLevel : QRCode.CorrectLevel.H
+                });
+                </script>
+                <script>
+                var weixin_qrcode  = document.getElementById('weixin_qrcode');
+                var qrcode = document.getElementById('qrcode');
+                $(document).click(function(){
+                    $("#qrcode").hide();
+                });
+                weixin_qrcode.onclick = function(event){
+                    event.stopPropagation();
+                    var val = qrcode.style.display;
+                    if(val == 'none'){
+                        qrcode.style.display = 'block'; //显示
+                    }else{
+                        qrcode.style.display = 'none'; //隐藏
+                    }
+                }
+                qrcode.onclick = function(event){
+                        event.stopPropagation();
+                        qrcode.style.display = 'none'; //隐藏
+                }
+
+               
+
+                function shareToQq(title,url,picurl){
+                var shareqqzonestring='https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary='+title+'&url='+url+'&title='+title+'&pics='+picurl;
+                window.open(shareqqzonestring,'newwindow','height=400,width=400,top=100,left=100');
+                }
+                $('.share_qzone').click(function(e){
+                shareToQq("SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代","https://www.qbitai.com/2025/04/275232.html","https://www.qbitai.com/wp-content/uploads/2025/04/2025-04-21-10.28.08-e1745202514277-150x150.png");
+                })
+    
+                </script>
+<!--相关阅读 start-->
+          
+                                          <div class="xiangguan">
+                          <h3>相关阅读</h3>
+                            <ul id="tags_related">
+                                         <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2023/04/43604.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2023/04/-2-e1681111763149.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2023/04/43604.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2023/04/43604.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2023/04/43604.html" target="_blank"></a><a href="https://www.qbitai.com/2023/04/43604.html" target="_blank">昆仑万维CEO方汉：AIGC以低成本达到80分水平，腰部工作者将大概率被淘汰 | 中国AIGC产业峰会</a></h4>
+                              <p>要么力争上游，要么老老实实当AIGC操作员</p>
+                              <div class="info"><span class="author"><a href="/?author=36" target="_blank">丰色</a></span><span class="author"><span class="time">2023-04-10</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/aigc" rel="tag">AIGC</a> <a href="https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e4%b8%87%e7%bb%b4" rel="tag">昆仑万维</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2024/11/216826.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2024/11/1-1-e1731051520276.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2024/11/216826.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2024/11/216826.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2024/11/216826.html" target="_blank"></a><a href="https://www.qbitai.com/2024/11/216826.html" target="_blank">国产AI可以拍微电影了！4K、60帧高清画质，自带音效</a></h4>
+                              <p>现在就差时长了</p>
+                              <div class="info"><span class="author"><a href="/?author=21" target="_blank">十三</a></span><span class="author"><span class="time">2024-11-08</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd" rel="tag">人工智能</a> <a href="https://www.qbitai.com/tag/%e6%99%ba%e8%b0%b1" rel="tag">智谱</a> <a href="https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90" rel="tag">视频生成</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2025/02/253855.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/replace/823abd161d75afde92e670221cf56320.jpeg" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2025/02/253855.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2025/02/253855.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2025/02/253855.html" target="_blank"></a><a href="https://www.qbitai.com/2025/02/253855.html" target="_blank">昆仑万维发布Matrix-Zero世界模型，开启空间智能新时代</a></h4>
+                              <p>世界模型预计4月份上线</p>
+                              <div class="info"><span class="author"><a href="/?author=19" target="_blank">量子位</a></span><span class="author"><span class="time">2025-02-14</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e4%b8%87%e7%bb%b4" rel="tag">昆仑万维</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2024/02/119809.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/replace/4b36cca642aa54d1822aeaffc84dbb32.jpeg" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2024/02/119809.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2024/02/119809.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2024/02/119809.html" target="_blank"></a><a href="https://www.qbitai.com/2024/02/119809.html" target="_blank">奖金最高10万元，天工“巧绘龙年”AI绘画大赛正式开赛</a></h4>
+                              <p>天工AI智能助手</p>
+                              <div class="info"><span class="author"><a href="/?author=19" target="_blank">量子位</a></span><span class="author"><span class="time">2024-02-08</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e5%a4%a9%e5%b7%a5ai" rel="tag">天工AI</a> <a href="https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e4%b8%87%e7%bb%b4" rel="tag">昆仑万维</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2025/02/252312.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2025/02/2025-02-10-12.27.32-e1739161700312.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2025/02/252312.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2025/02/252312.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2025/02/252312.html" target="_blank"></a><a href="https://www.qbitai.com/2025/02/252312.html" target="_blank">Meta新视频生成框架拿捏倒立杂技，双人舞也能完美同步！运动一致性暴增近20%，可无缝集成DiT模型</a></h4>
+                              <p>训练时引入运动信息表示</p>
+                              <div class="info"><span class="author"><a href="/?author=47832" target="_blank">克雷西</a></span><span class="author"><span class="time">2025-02-10</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/meta" rel="tag">Meta</a> <a href="https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90" rel="tag">视频生成</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2023/12/109303.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/replace/608f0bf8329934a539eb4c8c7244e858.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2023/12/109303.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2023/12/109303.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2023/12/109303.html" target="_blank"></a><a href="https://www.qbitai.com/2023/12/109303.html" target="_blank">昆仑万维「天工SkyAgents」Beta版全网测试</a></h4>
+                              <p>AI Agents三大核心模块：大脑、感知、执行</p>
+                              <div class="info"><span class="author"><a href="/?author=19" target="_blank">量子位</a></span><span class="author"><span class="time">2023-12-25</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e5%a4%a9%e5%b7%a5skyagents" rel="tag">天工SkyAgents</a> <a href="https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e4%b8%87%e7%bb%b4" rel="tag">昆仑万维</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                              </ul>
+                      </div> 
+              
+            <!--相关阅读 end-->
+		</div>
+        <div class="content_right">
+           			<!--热门文章 start-->
+      <div class="yaowen">
+        <h3>热门文章</h3>
+                                <div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274055.html" target="_blank">
+<div class="picture"><img width="1" height="1" src="https://www.qbitai.com/wp-content/uploads/replace/cb55cbe7de63a30b58d13796d4ac40d3.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>英伟达含量为零！华为密集模型性能比肩DeepSeek-R1，纯昇腾集群训练</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274274.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>联想百应智能体入选量子位“2025年值得关注的AIGC产品”：国内首个AI服务智能体打破中小企业AI落地困局</h4></div>
+<div class="info">2025-04-16</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274535.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/WechatIMG111-e1744892815391-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>最强视觉生成模型获马斯克连夜关注，吉卜力风格转绘不再需要GPT了</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274533.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/2025-04-17-20.23.09-e1744892622644-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>DeepSeek引爆「万物皆可AI」时代，20余位大咖分析行业痛点，万字梳理干货在此</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/273999.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/封面-150x150.jpeg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>倒计时1天！万物皆可AI，but怎么用好？速戳报名中国AIGC产业峰会</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div>                      </div>
+      <!-- 
+<form role="search" method="get" class="search-form" action="https://www.qbitai.com/">
+	<label>
+		<span class="screen-reader-text">搜索：</span>
+		<input type="search" class="search-field" placeholder="搜索…" value="" name="s" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">搜索</span></button>
+</form>
+ -->
+			<!--热门文章 end-->
+        </div>
+</div>
+
+
+<!--底部版权-->
+<div class="footer">
+	<div class="footer_con">
+        <div class="footer_r">
+        	<ul class="links"><li><a href="/?page_id=99" target="_blank">关于量子位</a></li><li><a href="/?page_id=101" target="_blank">加入我们</a></li><li><a href="/?page_id=103" target="_blank">寻求报道</a></li><li><a href="/?page_id=105" target="_blank">商务合作</a></li></ul>
+            
+            <div class="icon_btns">
+            <!-- <a href="/?page_id=183"target="_blank"><i class="weixin_icon"></i></a> -->
+            <a href="javascript:void(0)" class="footer_weixin"><div class="fa fa-weixin" id="biaojiwei2"><i class="weixin_icon"></i></div>
+    <div class="weixin_pop" id="popfoot" style="display:none">
+       <p>扫码关注量子位</p>
+       <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+    </div>
+</a>
+            <a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i class="weibo_icon"></i></a>
+            <a href="https://www.zhihu.com/org/liang-zi-wei-48/activities" target="_blank"><div class="share_zhihu"></div></a>
+            <a href="https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713" target="_blank"><div class="share_toutiao"></div></a>
+            </div>
+            <script type="text/javascript">
+         $('#biaojiwei2').click(function(){
+               $('#popfoot').show();
+                })
+             $('#popfoot').click(function(){
+               $('#popfoot').hide();
+                })
+        </script>
+        </div>
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"\u5c55\u5f00\u5b50\u83dc\u5355","collapse":"\u6298\u53e0\u5b50\u83dc\u5355"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/functions.js?ver=20160816"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/plugins/page-links-to/js/new-tab.min.js?ver=3.1.2"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/wp-embed.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js?ver=5.0.15"></script>
+	<script id="wxcs-script">
+	WX_Custom_Share = function(){
+		
+		var xhr = null;
+		var url = 'https://www.qbitai.com/wp-admin/admin-ajax.php';
+		var signature_url = window.location.href.split('#')[0];
+		var formData = {
+			action: 'wxcs_get_share_info',
+			type: 'post',
+			id: '275232',
+			signature_url: signature_url
+		};
+		
+		this.init = function(){
+			if( window.XMLHttpRequest ){
+				xhr = new XMLHttpRequest();
+			}
+			else if( window.ActiveXObject ){
+				xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			
+			get_share_info();
+		}
+		
+		function formatPostData( obj ){
+			
+			var arr = new Array();
+			for (var attr in obj ){
+				arr.push( encodeURIComponent( attr ) + '=' + encodeURIComponent( obj[attr] ) );
+			}
+			
+			return arr.join( '&' );
+		}
+		
+		function get_share_info(){
+			
+			if( xhr == null ) return;
+			
+			xhr.onreadystatechange = function(){
+				if( xhr.readyState == 4 && xhr.status == 200 ){
+					
+					var data = eval('(' + xhr.responseText + ')');
+					
+					if( data == null ){
+						return;
+					}
+					
+					var info = {
+						title: data.title,
+						summary: data.desc,
+						pic: data.img,
+						url: data.url
+					};
+					
+					if( formData.type == 'other' ){
+						info.title = document.title;
+						info.summary = location.href;
+						info.url = location.href;
+					}
+					
+					if( data.use_actual_url == true ){
+						info.url = location.href;
+					}
+
+					if( data.error ){
+						console.error( '自定义微信分享: ', data.error );
+					}
+					else if( data.appid ){
+						info.WXconfig = {
+							swapTitleInWX: data.swapTitleInWX,
+							appId: data.appid,
+							timestamp: data.timestamp,
+							nonceStr: data.nonceStr,
+							signature: data.signature
+						};
+					}
+					
+					setShareInfo( info );
+				}
+			};
+			
+			xhr.open( 'POST', url, true);
+			xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+			xhr.send( formatPostData( formData ) );
+		}
+	}
+	
+	new WX_Custom_Share().init();
+	</script>
+	<script>
+                        (function(){
+                            var bp = document.createElement('script');
+                            var curProtocol = window.location.protocol.split(':')[0];
+                            if (curProtocol === 'https') {
+                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                            }
+                            else {
+                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                            }
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(bp, s);
+                        })();
+                        </script>        <div class="footer_l">
+        	<div class="footer_logo"><a href="#" target="_blank"></a><span>追踪人工智能新趋势，报道科技行业新突破</span></div>
+            <div class="line3"></div>
+            <!--<p>量子位 QbitAI 版权所有&copy;北京极客伙伴科技有限公司 京ICP备17005886号-1</p>-->
+            <p>量子位 QbitAI 版权所有©北京极客伙伴科技有限公司 <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备17005886号-1</a></p>
+        </div>
+    </div>
+</div>
+
+
+</body></html>

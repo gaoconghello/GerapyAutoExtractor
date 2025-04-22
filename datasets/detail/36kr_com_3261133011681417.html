@@ -1,0 +1,780 @@
+<!DOCTYPE html><html data-path="/p/:id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="og:url" content="https://36kr.com/p/3261133011681417"><meta name="og:type" content="article"><meta property="article:published_time" content="2025-04-22T20:36:00+08:00"><meta data-react-helmet="true" name="baidu-site-verification" content="ET7tYDCqIv"><meta data-react-helmet="true" name="shenma-site-verification" content="8d43b014716644e38cc8fff2051c47a0_1623316092"><meta data-react-helmet="true" name="360-site-verification" content="b14201a8708468357bd6fab4ad556b78"><meta data-react-helmet="true" name="sogou_site_verification" content="5ZZdpkOf3U"><meta data-react-helmet="true" name="renderer" content="webkit"><meta data-react-helmet="true" name="apple-mobile-web-app-title" content="Title"><meta data-react-helmet="true" name="apple-mobile-web-app-capable" content="yes"><meta data-react-helmet="true" name="apple-mobile-web-app-status-bar-style" content="black"><meta data-react-helmet="true" name="HandheldFriendly" content="True"><meta data-react-helmet="true" name="MobileOptimized" content="320"><meta data-react-helmet="true" name="applicable-device" content="pc"><meta data-react-helmet="true" name="format-detection" content="telephone=no"><meta data-react-helmet="true" property="og:description" content="大模型在软件工程领域的研究仍然是一片蓝海。"><meta data-react-helmet="true" property="og:image" content="https://img.36krcdn.com/hsossms/20250422/v2_cadd3ff948e5470683425aef022202ba@46958_oswg845957oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center"><meta data-react-helmet="true" property="og:title" content="连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？-36氪"><meta data-react-helmet="true" name="description" content="大模型在软件工程领域的研究仍然是一片蓝海。"><meta data-react-helmet="true" name="keywords" content="资讯,股票,创业,投资,资本市场,汽车,教育,职业,房产,36氪首发,游戏,上市,新商业,新经济,网红经济,黑科技,最前沿,最前线,无人驾驶,自动驾驶,物联网,车联网,互联网,科技">
+    <title>连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？-36氪</title>
+    <link href="//static.36krcdn.com/36kr-web/static/app.13f3a081.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//static.36krcdn.com/36kr-web/static/article.cb2330b2.css">
+    
+    <link data-react-helmet="true" href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"><link data-react-helmet="true" rel="dns-prefetch" href="//sta.36krcdn.com"><link data-react-helmet="true" rel="dns-prefetch" href="//pic.36krcdn.com"><link data-react-helmet="true" rel="dns-prefetch" href="//static.36krcdn.com"><link data-react-helmet="true" rel="dns-prefetch" href="//img.36krcdn.com"><link data-react-helmet="true" rel="dns-prefetch" href="//file.36krcdn.com"><link data-react-helmet="true" rel="alternate" media="only screen and(max-width: 640px)" href="https://m.36kr.com/p/3261133011681417"><link data-react-helmet="true" rel="canonical" href="https://36kr.com/p/3261133011681417"><script type="text/javascript" charset="utf-8" async="" src="https://api.popin.cc/searchbox/36kr_cn.js"></script><script src="https://zz.bdstatic.com/linksubmit/push.js"></script><script async="" src="https://static.sensorsdata.cn/sdk/1.12.5/sensorsdata.min.js" charset="UTF-8"></script><script src="https://zz.bdstatic.com/linksubmit/push.js"></script><script src="https://hm.baidu.com/hm.js?713123c60a0e86982326bae1a51083e1"></script><script src="https://hm.baidu.com/hm.js?1684191ccae0314c6254306a8333d090"></script><script data-react-helmet="true">
+      window.WEIXINSHARE = {
+        shareTitle: "36氪_让一部分人先看到未来",
+        shareImg: "https://img.36krcdn.com/20191024/v2_1571894049839_img_jpg",
+        imgUrl: "https://img.36krcdn.com/20191024/v2_1571894049839_img_jpg",
+        shareDesc: "36氪为您提供创业资讯、科技新闻、投融资对接、股权投资、极速融资等创业服务，致力成为创业者可以依赖的创业服务平台，为创业者提供最好的产品和服务。"
+      }
+    </script><script data-react-helmet="true">
+      // sem 统计代码
+      var _hmt= _hmt||[];
+      (function(){
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1684191ccae0314c6254306a8333d090";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm,s);
+      })();
+    </script><script data-react-helmet="true">
+      //百度统计代码
+      var _hmt = _hmt || [];
+      (function () {
+          var hm = document.createElement('script');
+          hm.src = "https://hm.baidu.com/hm.js?713123c60a0e86982326bae1a51083e1";
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(hm, s);
+      })();
+    </script><script data-react-helmet="true">
+        // 给百度seo主动推送,  文明确认
+        (function () {
+          var bp = document.createElement('script');
+          var curProtocol = window.location.protocol.split(':')[0];
+          if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+          }
+          else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(bp, s);
+        })();
+      </script><script data-react-helmet="true">
+        // 神策统计代码
+        (function(para) {
+          var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
+          w['sensorsDataAnalytic201505'] = n;
+          w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
+          var ifs = ['track','quick','register','registerPage','registerOnce','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister','getAppStatus'];
+          for (var i = 0; i < ifs.length; i++) {
+            w[n][ifs[i]] = w[n].call(null, ifs[i]);
+          }
+          if (!w[n]._t) {
+            x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+            x.async = 1;
+            x.src = p;
+            x.setAttribute('charset','UTF-8');
+            y.parentNode.insertBefore(x, y);
+            w[n].para = para;
+          }
+        })({
+          sdk_url: 'https://static.sensorsdata.cn/sdk/1.12.5/sensorsdata.min.js',
+          heatmap_url: 'https://static.sensorsdata.cn/sdk/1.12.5/heatmap.min.js',
+          name: 'sa',
+          web_url: 'https://data.corp.36kr.com/',
+          server_url: "https://36kr.com/global/sensors/sa/sa",
+          heatmap:{
+            //default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
+            clickmap:'default',
+            //default 表示开启，自动采集 $WebStay 事件，可以设置 'not_collect' 表示关闭。
+            scroll_notice_map:'default'
+          },
+          source_type: {
+            search: ['//baidu.com', 'cn.bing.com', '//sm.cn', 'quark.sm.cn'],
+            social: ['.facebook.com'],
+          },
+          show_log: false,
+        });
+        (function(){
+          const cookies = {};
+          document.cookie.split('; ').forEach((c) => {
+            const key = c.split('=')[0];
+            const value = c.split('=')[1];
+            cookies[key] = value;
+          });
+          const userid = cookies["userId"];
+          const cid = cookies["kr_stat_uuid"];
+          if (userid) {
+            sa.login(userid);
+          } else {
+            sa.login(cid);
+          }
+
+          sa.quick('autoTrack');
+        })();
+      </script><script data-react-helmet="true">
+      window.WEIXINSHARE = {
+        shareTitle: "连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？-36氪",
+        shareImg: "https://img.36krcdn.com/hsossms/20250422/v2_cadd3ff948e5470683425aef022202ba@46958_oswg845957oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center",
+        imgUrl: "https://img.36krcdn.com/hsossms/20250422/v2_cadd3ff948e5470683425aef022202ba@46958_oswg845957oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center",
+        shareDesc: "大模型在软件工程领域的研究仍然是一片蓝海。"
+      }
+    </script><script data-react-helmet="true">
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+      </script><script data-react-helmet="true">
+        window.onload = function () {
+          if (window.appletSa || sessionStorage.getItem('appletSa')) {
+            sessionStorage.setItem('appletSa', window.appletSa || sessionStorage.getItem('appletSa'))
+            sa.track('MediaPageVIew', {media_event_value: window.appletSa})
+          }
+        }
+      </script><script>var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+// 埋点需求详情 https://shimo.im/sheets/aJg66OpLVX0PGC28/
+/*****工具方法*****/
+function isNumber(path) {
+    return !isNaN(Number(path));
+}
+function isObj(key) {
+    return typeof key === 'object';
+}
+/**
+ * 判断obj中是否有key这个属性
+ * @param obj {object}
+ * @param key {string}
+ */
+function objHasKey(obj, key) {
+    return obj.hasOwnProperty(key);
+}
+/**
+ * @param {{
+  *  control: Boolean,
+  *  key: string,
+  *  value: string,
+  *  data?: obj,
+  *  elseValue?: string
+  * }} option
+  *
+  * 参数说明：
+  * control 判断条件
+  * data 最终返回的对象
+  * key 添加到data中的属性
+  * value 要添加的值
+  * elseValue 如果control不成立，添加到data的值 传入此参数则添加，不传则不会添加
+  */
+function setProperty(option) {
+    var _a = option.data, data = _a === void 0 ? {} : _a, key = option.key, value = option.value, control = option.control, elseValue = option.elseValue;
+    if (control) {
+        data[key] = value;
+    }
+    else if (elseValue) {
+        data[key] = elseValue;
+    }
+    return data;
+}
+function getClass(attributes) {
+    var classObj = attributes.class || {};
+    return classObj.value || "";
+}
+var Platform;
+(function (Platform) {
+    Platform["H5"] = "H5";
+    Platform["WEB"] = "web";
+})(Platform || (Platform = {}));
+;
+function judgePlatform(userAgent) {
+    if (!userAgent && typeof window !== 'undefined') {
+        userAgent = navigator.userAgent;
+    }
+    if (!userAgent)
+        return Platform.WEB;
+    if (userAgent.match(/iPad|iPhone/i)) {
+        return Platform.H5;
+    }
+    else if (userAgent.match(/Android/i)) {
+        return Platform.H5;
+    }
+    return Platform.WEB;
+}
+/*****工具方法end*****/
+/**
+ * 统计点击跳转外链的数据
+ * 包括media_content_id、media_event_value、source_id、media_source
+ * @param {String} hrefValue
+ */
+function externalLink(hrefValue) {
+    var data = {};
+    var externalLinkList = [
+        { pathKey: '/', mediaSourceValue: 'page_home' },
+        { pathKey: 'p', mediaSourceValue: 'article' },
+        { pathKey: 'newsflashes', mediaSourceValue: 'newsflash', subPathNotNumMediaSourceValue: 'page_newsflashes' },
+        { pathKey: 'topics', mediaSourceValue: 'topics' },
+    ];
+    var pathInfo = new PathInfo(window.location.pathname);
+    // 记录外链url
+    data.media_content_id = hrefValue;
+    // 详情页中（当前地址包含ID），含有外链，发送source_id
+    Object.assign(data, setProperty({
+        control: isNumber(pathInfo.sub),
+        key: 'source_id',
+        value: pathInfo.sub,
+    }));
+    // 地方站 外链记录media_event_value
+    if (pathInfo.root === 'local') {
+        data.media_event_value = 'local_' + pathInfo.sub;
+    }
+    return Object.assign(data, genMediaSource(externalLinkList, isNumber(pathInfo.sub)));
+}
+/**
+ * 统计点击跳转www.36kr.com内链的数据
+ * 根据主站路由规则,分析点击的地址
+ * 收集source_id、media_source、media_event_value、media_content_type、media_content_id
+ * @param {String} hrefValue
+ * @param {String} className 点击的a标签所带class
+ */
+function internalLink(hrefValue, className) {
+    var pageInfo = new PageInfo(hrefValue);
+    var data = {};
+    /* 聚合页跳转id */
+    Object.assign(data, setProperty({
+        control: pageInfo.currentPath.sub && isNumber(pageInfo.currentPath.sub) && pageInfo.destPath.sub && isNumber(pageInfo.destPath.sub),
+        key: 'source_id',
+        value: pageInfo.currentPath.sub,
+    }));
+    /* 搜索结果、资讯、地方 */
+    Object.assign(data, genMediaEventValue(hrefValue));
+    // 文章详情含有跳转链接
+    Object.assign(data, setProperty({
+        control: pageInfo.currentPath.root === 'p' && isNumber(pageInfo.currentPath.sub) && isNumber(pageInfo.destPath.sub),
+        key: 'media_source',
+        value: 'article',
+    }));
+    /* 不同页面，进入详情页 */
+    Object.assign(data, intoDetailPage(pageInfo.destPath.sub));
+    /* 添加media_conten_type 针对相应页面添加属性 */
+    Object.assign(data, genContentTypeAndId(hrefValue, className));
+    return data;
+}
+/**
+ * 获取media_event_value统一方法
+ * 点击搜索结果list和地方站list跳转到详情页
+ * @param currentPath
+ * @param subHref
+ */
+function genMediaEventValue(hrefValue) {
+    var data = {};
+    var key = 'media_event_value';
+    var pageInfo = new PageInfo(hrefValue);
+    var genMediaEventValueList = [
+        { pathKey: 'search', subPathList: [
+                { key: 'articles', value: 'search_articles' },
+                { key: 'newsflashes', value: 'search_flashnews' },
+                { key: 'video', value: 'search_videos' },
+                { key: 'monographic', value: 'search_topics' },
+                { key: 'user', value: 'search_writer' },
+            ] },
+        { pathKey: 'information', subPathList: [
+                'web_news', 'contact', 'enterpriseservice', 'happy_life', 'travel',
+                'real_estate', 'web_recommend', 'technology', { key: 'zhichang', value: 'web_zhichang' }, 'innovate',
+            ] },
+        { pathKey: 'local' }
+    ];
+    for (var _i = 0, genMediaEventValueList_1 = genMediaEventValueList; _i < genMediaEventValueList_1.length; _i++) {
+        var pathItem = genMediaEventValueList_1[_i];
+        if (pageInfo.currentPath.root === pathItem.pathKey) {
+            if (pageInfo.currentPath.root === 'local') {
+                // 城市
+                data.media_event_value = 'local_' + pageInfo.currentPath.sub;
+            }
+            else {
+                for (var _a = 0, _b = pathItem.subPathList; _a < _b.length; _a++) {
+                    var subPathItem = _b[_a];
+                    var value = isObj(subPathItem) ? subPathItem.value : subPathItem;
+                    var subPathKey = isObj(subPathItem) ? subPathItem.key : subPathItem;
+                    if (pageInfo.currentPath.sub === subPathKey) {
+                        Object.assign(data, setProperty({
+                            control: isNumber(pageInfo.destPath.sub),
+                            key: key,
+                            value: value,
+                        }));
+                    }
+                }
+            }
+        }
+    }
+    return data;
+}
+/**
+ * 不同页面点击详情链接跳转到详情页，添加media_source
+ * @param subHref
+ */
+function intoDetailPage(subHref) {
+    var pathInfo = new PathInfo(window.location.pathname);
+    var intoDetailPageList = [
+        { pathKey: '/', mediaSourceValue: 'page_home' },
+        { pathKey: '/video', mediaSourceValue: 'page_video' },
+        { pathKey: '/topics', mediaSourceValue: 'page_topics' },
+        { pathKey: 'newsflashes', control: isNumber(pathInfo.sub), mediaSourceValue: 'newsflash', subPathNotNumMediaSourceValue: 'page_newsflashes' },
+        { pathKey: 'information', mediaSourceValue: 'page_information' },
+        { pathKey: 'search', mediaSourceValue: 'page_search' },
+        { pathKey: 'Calendar', mediaSourceValue: 'calendar' },
+        { pathKey: 'user', mediaSourceValue: 'user' },
+        { pathKey: 'motif', mediaSourceValue: 'motif' },
+        { pathKey: 'topics', mediaSourceValue: 'topics' },
+        { pathKey: 'video', mediaSourceValue: 'video' },
+        { pathKey: 'audio', mediaSourceValue: 'audio' },
+    ];
+    return genMediaSource(intoDetailPageList, isNumber(subHref));
+}
+/**
+ * 获取media_source统一方法
+ * 记录从何处跳转到的详情页
+ * @param pathList
+ * @param control
+ */
+function genMediaSource(pathList, control) {
+    var pathInfo = new PathInfo(window.location.pathname);
+    var key = 'media_source';
+    var data = {};
+    for (var _i = 0, pathList_1 = pathList; _i < pathList_1.length; _i++) {
+        var pathItem = pathList_1[_i];
+        if (pathInfo.path === pathItem.pathKey) {
+            data.media_source = pathItem.mediaSourceValue;
+        }
+        else if (pathInfo.root === pathItem.pathKey && pathInfo.sub) {
+            Object.assign(data, setProperty({
+                control: objHasKey(pathItem, 'control') ? pathItem.control : control,
+                key: key,
+                value: pathItem.mediaSourceValue,
+                elseValue: pathItem.subPathNotNumMediaSourceValue || null,
+            }));
+        }
+    }
+    return data;
+}
+/**
+ * 记录跳转到的具体内容类型和具体内容id
+ * @param hrefValue
+ * @param className
+ */
+function genContentTypeAndId(hrefValue, className) {
+    // 设置media_content_type和media_content_id
+    var pageInfo = new PageInfo(hrefValue);
+    var genContentTypeAndIdList = [
+        {
+            key: 'p',
+            setData: {
+                media_content_type: 'article',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'newsflashes',
+            setData: {
+                media_content_type: 'flashnews',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'video',
+            setData: {
+                media_content_type: 'video',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'v-video',
+            setData: {
+                media_content_type: 'video_portrait',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'topics',
+            setData: {
+                media_content_type: 'topic',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'motif',
+            setData: {
+                media_content_type: (function () {
+                    // TODO 这里声明了一个自执行函数，判断是否为商业主题后，给media_conten_type不同的值，可否优化?
+                    var isMotifList = pageInfo.currentPath.root === 'motif-catalog' && pageInfo.currentPath.sub === 'recomend';
+                    var isHomeEntry = className.includes('businessMotifHome-main-item-top-a');
+                    var isBusinessMotif = isMotifList || isHomeEntry;
+                    return isBusinessMotif ? 'business_motif' : 'motif';
+                })(),
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'user',
+            setData: {
+                media_content_type: 'user',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+        {
+            key: 'column',
+            setData: {
+                media_content_type: 'audio',
+                media_content_id: pageInfo.destPath.sub,
+            }
+        },
+    ];
+    var data = {};
+    if (!isNumber(pageInfo.destPath.sub))
+        return data;
+    for (var _i = 0, genContentTypeAndIdList_1 = genContentTypeAndIdList; _i < genContentTypeAndIdList_1.length; _i++) {
+        var hrefItem = genContentTypeAndIdList_1[_i];
+        if (pageInfo.destPath.root === hrefItem.key) {
+            data = hrefItem.setData;
+        }
+    }
+    return data;
+}
+/**
+ * 根据高阶组件中，向a标签插入的属性
+ * 收集对应的广告信息 和 从哪个具体推荐位跳转到的详情页
+ * 对应的广告信息有
+ * @param elementTarget 点击的a标签
+ */
+function genPropertyAccordingToAttribute(elementTarget) {
+    // 推荐位跳转到详情页
+    var operation_list = elementTarget.getAttribute('sensors_operation_list');
+    // 运营位上具体第几帧、第几位、日签的日期
+    var index_num = elementTarget.getAttribute('sensors_index_num');
+    // 广告事件： 1、曝光  2、点击
+    var operate_type = elementTarget.getAttribute('sensors_operate_type');
+    // 具体广告位置id
+    var position_id = elementTarget.getAttribute('sensors_position_id');
+    // 具体广告的plan_id
+    var plan_id = elementTarget.getAttribute('sensors_media_content_id');
+    var genPropertyAccordingToAttributeList = [
+        {
+            control: operation_list === 'page_flow' && window.location.pathname === '/',
+            key: 'operation_list',
+            value: 'latest_articles',
+            elseValue: 'page_flow'
+        },
+        {
+            control: operation_list === 'banner',
+            key: 'operation_list',
+            value: 'banner'
+        },
+        {
+            control: operation_list === 'banner_right',
+            key: 'operation_list',
+            value: 'banner_right'
+        },
+        {
+            control: operation_list === 'author_latest_article',
+            key: 'operation_list',
+            value: 'author_latest_article'
+        },
+        {
+            control: operation_list === 'specialtopic_recommend',
+            key: 'operation_list',
+            value: 'specialtopic_recommend'
+        },
+        {
+            control: operation_list === 'video_recommend',
+            key: 'operation_list',
+            value: 'video_recommend'
+        },
+        {
+            control: operation_list === 'dailyword',
+            key: 'operation_list',
+            value: 'dailyword'
+        },
+        {
+            control: operation_list === 'latest_newsflash',
+            key: 'operation_list',
+            value: 'latest_newsflash'
+        },
+        {
+            control: operation_list === 'business_motif',
+            key: 'operation_list',
+            value: 'business_motif'
+        },
+        {
+            control: operation_list === 'hotlist',
+            key: 'operation_list',
+            value: 'hotlist'
+        },
+        {
+            control: operation_list === 'latest_videos',
+            key: 'operation_list',
+            value: 'latest_videos'
+        },
+        {
+            control: operation_list === 'recommend_motif',
+            key: 'operation_list',
+            value: 'recommend_motif'
+        },
+        {
+            control: operation_list === 'hot_author',
+            key: 'operation_list',
+            value: 'hot_author'
+        },
+        {
+            control: operation_list === 'next_card',
+            key: 'operation_list',
+            value: 'next_card'
+        },
+        {
+            control: index_num,
+            key: 'media_index_number',
+            value: index_num
+        },
+        {
+            control: operate_type,
+            key: 'operate_type',
+            value: operate_type
+        },
+        {
+            control: position_id,
+            key: 'position_id',
+            value: position_id
+        },
+        {
+            control: plan_id,
+            key: 'media_content_id',
+            value: plan_id
+        },
+        {
+            control: operate_type || position_id,
+            key: 'media_content_type',
+            value: 'ad'
+        },
+        {
+            control: position_id === '827' || operation_list === 'home_top',
+            key: 'operation_list',
+            value: 'home_top'
+        },
+        {
+            control: position_id === '817',
+            key: 'operation_list',
+            value: 'article_bottom'
+        },
+        {
+            control: position_id === '835',
+            key: 'operation_list',
+            value: 'comment_bottom'
+        },
+    ];
+    var data = {};
+    for (var _i = 0, genPropertyAccordingToAttributeList_1 = genPropertyAccordingToAttributeList; _i < genPropertyAccordingToAttributeList_1.length; _i++) {
+        var infoItem = genPropertyAccordingToAttributeList_1[_i];
+        Object.assign(data, setProperty(infoItem));
+    }
+    return data;
+}
+// 暴露给神策api的方法，此方法返回的object，神策会统一收集上报
+function manualMain(elementTarget) {
+    if (elementTarget.tagName.toLowerCase() !== 'a')
+        throw Error('目前只收集点击a标签所跳转的信息');
+    // TODO: 需要区分H5还是web
+    var data = {
+        platform: judgePlatform(window &&
+            window.initialState &&
+            window.initialState.navigator &&
+            window.initialState.navigator.userAgent)
+    };
+    var attributes = elementTarget.attributes;
+    var hrefObj = attributes.href || {};
+    var className = getClass(attributes);
+    var hrefValue = hrefObj.value || "";
+    if ((/(http|ftp|https):\/\//.test(hrefValue) && !hrefValue.includes('36kr.com')) ||
+        (/(http|ftp|https):\/\//.test(hrefValue) && hrefValue.includes('36kr.com/api/ad/'))) {
+        Object.assign(data, externalLink(hrefValue));
+    }
+    else {
+        var internalLinkHrefValue = hrefValue;
+        if (hrefValue.includes('36kr.com'))
+            internalLinkHrefValue = hrefValue.split('36kr.com')[1];
+        Object.assign(data, internalLink(internalLinkHrefValue, className));
+    }
+    // 通过标签属性，添加相关信息
+    Object.assign(data, genPropertyAccordingToAttribute(elementTarget));
+    return data;
+}
+/**
+ * 根据传入的地址生成路径信息
+ */
+var PathInfo = /** @class */ (function () {
+    function PathInfo(path) {
+        this.path = path;
+        var pathArr = path.split('/').filter(function (x) { return x !== ""; });
+        this.root = pathArr[0];
+        this.sub = pathArr[1];
+    }
+    return PathInfo;
+}());
+// 分析当前地址和传入的地址，生成当前页面的地址信息，方便业务中的数据分析
+var PageInfo = /** @class */ (function () {
+    function PageInfo(href) {
+        this.destPath = __assign({}, new PathInfo(href), new SourcePath(href));
+        this.currentPath = __assign({}, new PathInfo(window.location.pathname), new SourcePath(window.location.pathname));
+    }
+    return PageInfo;
+}());
+var SourcePath = /** @class */ (function () {
+    function SourcePath(href) {
+        this.group = SourcePath.groupFn(href);
+    }
+    SourcePath.groupFn = function (href) {
+        var pathInfo = new PathInfo(href);
+        if (pathInfo.sub && isNumber(pathInfo.sub)) {
+            return 'content';
+        }
+        else {
+            return 'default';
+        }
+    };
+    return SourcePath;
+}());
+// 区分埋点的“关键事件”
+function getCaseKey(data) {
+    if (data.hasOwnProperty('operate_type') ||
+        data.hasOwnProperty('position_id')) {
+        return 'MediaWebAD';
+    }
+    else {
+        return 'MediaWebRead';
+    }
+}
+function coverTagAClickEvent() {
+    // document.querySelectorAll('a').forEach(item => {
+    document.getElementById('app').addEventListener('click', function (e) {
+        // 兼容性处理
+        var event = e || window.event;
+        var eventPath = event.path || [];
+        var target = eventPath.filter(function (x) {
+            return x && x.nodeName && x.nodeName.toLocaleLowerCase() === 'a';
+        });
+        // 判断是否匹配目标元素
+        if (target.length !== 0) {
+            var elementTarget = target[target.length - 1];
+            if (elementTarget.getAttribute('sensors_do_not_send_data'))
+                return;
+            var targetValue_1 = elementTarget.getAttribute('target');
+            var targetHref = elementTarget.getAttribute('href');
+            var url_1 = elementTarget.href;
+            var data = manualMain(elementTarget);
+            if (!targetHref)
+                return;
+            if (!targetValue_1)
+                e.preventDefault();
+            if (window.sa && window.sa.track) {
+                window.sa.track(getCaseKey(data), data, function () {
+                    if (!targetValue_1)
+                        location.href = url_1;
+                });
+            }
+            else {
+                if (!targetValue_1)
+                    location.href = url_1;
+            }
+        }
+    });
+    // });
+}
+// 手动埋点内容
+window.onload = function () {
+    setTimeout(function () {
+        coverTagAClickEvent();
+    }, 0);
+};
+
+//# sourceMappingURL=main.js.map
+</script>
+<script charset="utf-8" src="//static.36krcdn.com/36kr-web/static/0.1b18914b.js"></script><script charset="utf-8" src="//static.36krcdn.com/36kr-web/static/1.912ad9fa.js"></script><script charset="utf-8" src="//static.36krcdn.com/36kr-web/static/article.b89f7102.js"></script><meta property="og:type" content="article" data-react-helmet="true"><meta property="og:url" content="https://36kr.com/p/3261133011681417" data-react-helmet="true"><style type="text/css">@keyframes circle_classic{0%{opacity: 0.1;transform: rotate(0deg) scale(0.5);}100%{opacity: 1;transform: rotate(360deg) scale(1.2);};}@keyframes typing{0%{background-color: rgba(158,158,158, 1);box-shadow: 12px 0px 0px 0px rgba(158,158,158,0.2),24px 0px 0px 0px rgba(158,158,158,0.2);}25%{background-color: rgba(158,158,158, 0.4);box-shadow: 12px 0px 0px 0px rgba(158,158,158,2),24px 0px 0px 0px rgba(158,158,158,0.2);}75%{background-color: rgba(158,158,158, 0.4);box-shadow: 12px 0px 0px 0px rgba(158,158,158,0.2),24px 0px 0px 0px rgba(158,158,158,1);};}</style></head>
+<body>
+<div id="app"><div class="kr-article-box"><div class="box-kr-article-new-y"><div class="kr-layout"><div></div><div class="kr-layout-main clearfloat"><div class="kr-header " style="opacity: 1; transform: translateY(0px);"><div class="kr-header-main "><div class="kr-header-content"><div class="user-login" style="display: none;"><img alt="" class="user-pic"><div class="pull-down"><a class="ellipsis-1 user-name" title="" href="/usercenter/basicinfo" target="_blank" rel="noopener noreferrer"></a><a class="ellipsis-1 " title="账号设置" href="/usercenter/account-password" target="_blank" rel="noopener noreferrer">账号设置</a><a class="ellipsis-1 " title="我的关注" href="/usercenter/follow" target="_blank" rel="noopener noreferrer">我的关注</a><a class="ellipsis-1 " title="我的收藏" href="/usercenter/favorite" target="_blank" rel="noopener noreferrer">我的收藏</a><a class="ellipsis-1 " title="申请的报道" href="/seek-report-new?tabKey=2" target="_blank" rel="noopener noreferrer">申请的报道</a><a class="ellipsis-1 " title="退出登录" target="_blank" rel="noopener noreferrer">退出登录</a></div></div><div class="user-login" style="display: inline-block;"><div class="text">登录</div></div><div class="kr-header-search-entry clearfloat"><div class="search-button"><span class="search-icon"></span><span class="search-text weight-bold">搜索</span></div></div><div><ul class="business-nav"><li class="nav-wrapper nav-wrapper-two-col"><div class="sub-nav-wrapper" style="transform: scaleY(0.125); transition-duration: 0.666667s;"><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_384be8e4c1e942a28cf13a2e427fe211@18900718_oswg78404oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36氪Auto</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_636063907bdc44389b46e7db9c761a38@18900718_oswg62424oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>数字时氪</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230210/v2_38d1cdabc8404b00806de58cbedb3b7b_oswg27031oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>未来消费</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_da74c43ba887426f8fbccaede691b844@18900718_oswg76573oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>智能涌现</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_8c2233c88a854c6496ff4f7842a9f9dd_oswg17629oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>未来城市</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_632f36f1c5904a539a1e57efe4497e3a@18900718_oswg63630oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>启动Power on</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="http://letschuhai.com" target="_blank" rel="noopener noreferrer"><span>36氪出海</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_89fa42090fae495ca5e45ba921ee42ff@18900718_oswg65306oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36氪研究院</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20231204/v2_3b8447ffdda24a38a30fd839fd934baa@000000_oswg40121oswg430oswg430_img_jpeg" target="_blank" rel="noopener noreferrer"><span>潮生TIDE</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_c4720503500642d294b5be04064ef870@18900718_oswg58529oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36氪企服点评</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_d6d3f8b57fa04507915c48adf0f9620d_oswg16586oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36氪财经</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_efc94b0cce7043dbac883c1dfe00c810@18900718_oswg57046oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>职场bonus</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_9eb02027be264174b61b9d49c391ca75_oswg15571oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36碳</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230605/v2_86f220b69e164751946d583b5472c857@18900718_oswg97988oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>后浪研究所</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_0c6a697748b54beea356d6e1f1fcec5f_oswg17066oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>暗涌Waves</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_2f845ed16244458d8887a5526c63c6d6_oswg17346oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>硬氪</span></a></div></div><div class="nav-label "><span>媒体品牌</span></div></li><li class="nav-wrapper "><div class="sub-nav-wrapper" style="transform: scaleY(0.25); transition-duration: 0.333333s;"><div class="sub-nav-item"><a class="sub-nav-name " href="https://q.36kr.com" target="_blank" rel="noopener noreferrer"><span>企业号</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://www.36dianping.com/" target="_blank" rel="noopener noreferrer"><span>企服点评</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/academe" target="_blank" rel="noopener noreferrer"><span>36Kr研究院</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://innovation.36kr.com" target="_blank" rel="noopener noreferrer"><span>36Kr创新咨询</span></a></div></div><div class="nav-label "><span>企业服务</span></div></li><li class="nav-wrapper "><div class="sub-nav-wrapper" style="transform: scaleY(0.5); transition-duration: 0.166667s;"><div class="sub-nav-item"><a class="sub-nav-name " href="https://www.36kr.com/p/2492318105786505" target="_blank" rel="noopener noreferrer"><span>核心服务</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/policy" target="_blank" rel="noopener noreferrer"><span>城市之窗</span></a></div></div><div class="nav-label "><span>政府服务</span></div></li><li class="nav-wrapper "><div class="sub-nav-wrapper" style="transform: scaleY(0.166667); transition-duration: 0.5s;"><div class="sub-nav-item"><a class="sub-nav-name " href="https://topics.36kr.com/topic/1645523444931974" target="_blank" rel="noopener noreferrer"><span>创投发布</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/LPlan" target="_blank" rel="noopener noreferrer"><span>LP源计划</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/VClub" target="_blank" rel="noopener noreferrer"><span>VClub</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/organization/" target="_blank" rel="noopener noreferrer"><span>VClub投资机构库</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/topics/1620276089894403" target="_blank" rel="noopener noreferrer"><span>投资机构职位推介</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://pitchhub.36kr.com/audit-investor" target="_blank" rel="noopener noreferrer"><span>投资人认证</span></a></div></div><div class="nav-label "><span>投资人服务</span></div></li><li class="nav-wrapper "><div class="sub-nav-wrapper" style="transform: scaleY(0.25); transition-duration: 0.333333s;"><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/seek-report-new" target="_blank" rel="noopener noreferrer"><span>寻求报道</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://img.36krcdn.com/hsossms/20230209/v2_95565530d4d94dc4ad904f3131c7b690_oswg23055oswg320oswg320_img_png" target="_blank" rel="noopener noreferrer"><span>36氪Pro</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://topics.36kr.com/topic/1961250130199045" target="_blank" rel="noopener noreferrer"><span>创投氪堂</span></a></div><div class="sub-nav-item"><a class="sub-nav-name " href="https://36kr.com/project-form/settled" target="_blank" rel="noopener noreferrer"><span>企业入驻</span></a></div></div><div class="nav-label "><span>创业者服务</span></div></li><li class="nav-wrapper "><div class="sub-nav-wrapper" style="transition-duration: 0s;"></div><div class="nav-label "><span>创投平台</span></div></li></ul></div><div class="wise-entry-box"><div class="wise-entry-box-box" style="transition: 0.3s; left: -90px;"><a href="https://36kr.com/topics/799051634713857" class="wise-entry-one" target="_blank" rel="noopener noreferrer"> </a><a href="http://www.bjjubao.org.cn/node_1606.html" class="wise-entry-two" target="_blank" rel="noopener noreferrer"> </a><a href="ttps://36kr.com/topics/799051634713857" class="wise-entry-three" target="_blank" rel="noopener noreferrer"> </a></div></div></div></div></div><div class="main-left"><div class="kr-sider-wrapper fixed " style="transform: translate(0px, 0px) translateZ(0px); top: 44px;"><div class="kr-sider "><a href="/" class="go-home clearfloat"><div class="logo"></div></a><div class="kr-sider-shadow-wrapper clearfloat"><div class="line"></div><ul class="kr-channel-nav"><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/" id="home">首页</a></div></li><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/newsflashes/" id="newsflash">快讯</a></div></li><li class="channel-item"><div class="sub-title"><span class="open-icon close"></span><a class="name weight-bold " href="/information/web_news/" id="information">资讯</a></div><div class="sub-list "><ul class="sub-list-right"><li class="sub-item"><a href="/information/web_recommend/" class="">推荐</a></li><li class="sub-item"><a href="/information/ccs/" class="">财经</a></li><li class="sub-item"><a href="/information/AI/" class="">AI</a></li><li class="sub-item"><a href="/information/aireport/" class="">自助报道</a></li><li class="sub-item"><a href="/local/jiangsu" class="">江苏</a></li></ul><ul class="sub-list-left"><li class="sub-item"><a href="/information/web_news/latest/" class="">最新</a></li><li class="sub-item"><a href="/information/contact/" class="">创投</a></li><li class="sub-item"><a href="/information/travel/" class="">汽车</a></li><li class="sub-item"><a href="/information/technology/" class="">科技</a></li><li class="sub-item"><a href="/information/shuzihua/" class="">专精特新</a></li></ul></div></li><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/live/channel" id="liveChannel">直播</a></div></li><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/video/" id="video">视频</a></div></li><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/topics/" id="special-topic">专题</a></div></li><li class="channel-item"><div class="sub-title"><a class="name weight-bold " href="/activity" id="activity">活动</a></div></li><div class="local-list" style="display: none;"><span class="triangle"></span><div class="local-column"><li class="local-item"><a href="/local/guangdong" class="">广东</a></li><li class="local-item"><a href="/local/jiangsu" class="active">江苏</a></li><li class="local-item"><a href="/local/sichuan" class="">四川</a></li><li class="local-item"><a href="/local/henan" class="">河南</a></li><li class="local-item"><a href="/local/hubei" class="">湖北</a></li><li class="local-item"><a href="/local/anhui" class="">安徽</a></li><li class="local-item"><a href="/local/hainan" class="">海南</a></li></div><div class="local-column"><li class="local-item"><a href="/local/zhejiang" class="">浙江</a></li><li class="local-item"><a href="/local/xian" class="">陕西</a></li><li class="local-item"><a href="/local/chongqing" class="">重庆</a></li><li class="local-item"><a href="/local/qingdao" class="">山东</a></li><li class="local-item"><a href="/local/hunan" class="">湖南</a></li><li class="local-item"><a href="/local/guizhou" class="">贵州</a></li></div></div></ul><div class="kr-search-entry clearfloat"><div class="search-button"><span class="search-icon"></span><span class="search-text weight-bold">搜索</span></div></div><div class="seek-report-wrap"><span class="hot-icon"></span><a href="/seek-report-new?t=1745325382728" class="seek-report" target="_blank" rel="noopener noreferrer nofollow"><span class="seek-report-icon"></span><span class="seek-report-text">寻求报道</span></a></div><div><div class="i-want-contribution"><span class="i-want-contribution-icon"></span><span class="i-want-contribution-text">我要入驻</span></div></div><a href="/station-business" class="station-business" target="_blank" rel="noopener noreferrer nofollow"><span class="station-business-icon"></span><span class="station-business-text">城市合作</span></a></div></div></div></div><div class="main-right "><div class="kr-layout-content"><div class="kr-article"><div class="kr-article-inner"><div class="article-detail-wrapper-box"><div><div class="article-left-container"><div class="article-content"><div class="article-mian-content"><div class="article-wrapper common-width"><div class="common-width"><div><h1 class="article-title margin-bottom-20 common-width">连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？</h1><div class="article-title-icon common-width margin-bottom-40"><a class="title-icon-item item-a" href="/user/214166" target="_blank" rel="nofollow noopener noreferrer">机器之心</a><span class="title-icon-item item-time"><i>·</i>2025年04月22日 19:14</span></div><div class="summary">大模型在软件工程领域的研究仍然是一片蓝海。</div></div></div><div class="common-width margin-bottom-20"><div class="common-width content articleDetailContent kr-rich-text-wrapper">
+ 
+ 
+  <p><strong>论文的第一作者是香港中文大学（深圳）数据科学学院三年级博士生徐俊杰龙，指导老师为香港中文大学（深圳）数据科学学院的贺品嘉教授和微软主管研究员何世林博士。贺品嘉老师团队的研究重点是软件工程、LLM for DevOps、大模型安全。</strong></p>
+  <p>大型语言模型（LLM）近期在软件工程领域取得了显著进展，催生了 MetaGPT、SWE-agent、OpenDevin、Copilot 和 Cursor 等大量研究成果与实际应用，深刻影响着软件开发的方法论和实践。现有研究主要聚焦于软件开发生命周期（SDLC）的早期阶段的任务，如代码生成（LiveCodeBench）, 程序修复（SWE-Bench），测试生成（SWT-Bench）等等。然而，这些研究往往忽视了软件部署后的运维阶段。在实际生产环境中，线上软件的故障可能导致服务提供商遭受数十亿美元的损失，这凸显了在根因分析（RCA）领域开发更有效解决方案的迫切需求。</p>
+  <p>为了探索 LLM 在这一领域的可行性，学术界和工业界的许多研究者已经开始进行相关研究。然而，受限于运维数据的隐私性以及企业系统的差异性，目前基于 LLM 的根因分析研究缺乏统一且清晰的任务建模，也没有公开的评估数据和通用的评估指标。这使得公平地评估 LLM 在根因分析方面的能力变得困难，进而阻碍了该领域的发展。</p>
+  <p>为了解决这一问题，微软 DKI 团队、香港中文大学（深圳）贺品嘉教授团队与清华大学裴丹教授共同提出了当前首个公开的、用于评估 LLM 根因分析能力的基准评估集 ——OpenRCA。本文已被 ICLR 2025 接收。</p>
+  <p><strong>OpenRCA 为基于 LLM 的 RCA 任务制定了清晰的任务建模和对应的评估方法，并提供了一组公开且经过人工对齐的故障记录和大量的运维可观测数据。这为未来基于 LLM 的 RCA 方法的探索奠定了基础。</strong></p>
+  <p class="image-wrapper"><img data-img-size-val="1080,398" src="https://img.36krcdn.com/hsossms/20250422/v2_c5463039f50940609bca9d4555a6db78@46958_oswg215761oswg1080oswg398_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <p>论文标题：OpenRCA: Can Large Language Models Locate the Root Cause of Software Failures?</p>
+  <p>论文地址：https://openreview.net/pdf?id=M4qNIzQYpd</p>
+  <p>开源代码：https://github.com/microsoft/OpenRCA</p>
+  <p>评测榜单：https://microsoft.github.io/OpenRCA/</p>
+  <p>研究者发现，当前主流的 LLM 在直接解决 OpenRCA 问题时面临显著挑战。例如，Claude 3.5 在提供了 oracle KPI 的情况下，仅解决了 5.37% 的 OpenRCA 任务。当使用随机均匀抽样策略提取可能相关的数据时，这一结果进一步下降到 3.88%。为了为解决 OpenRCA 任务指明可能的方向，研究者进一步开发了 RCA-agent，以作为一个更有效的基线方法。在使用 RCA-agent 后，Claude 3.5 的准确率提升至 11.34%，但依然离解决好 OpenRCA 问题有着较大的差距。</p>
+  <h2><strong>评估基准</strong></h2>
+  <p><strong>任务建模</strong></p>
+  <p>OpenRCA 将基于 LLM 的根因分析任务定义为目标驱动的形式：模型或智能体将接收由自然语言组成的查询指令，执行不同目标的根因分析任务。根据查询指令，模型或智能体需要通过检索和分析当前系统中保存的运维可观测数据（包括指标、日志、调用链），从中推理并识别出三种根因的组成元素（故障时间、故障组件和故障原因）中的一个或多个元素，并最终以 JSON 结构输出。当输出中的所有元素与标签一致时，该样本被视为正例；否则，视为反例。OpenRCA 通过计算样本的平均预测正确率来评估方法的能力。</p>
+  <p class="image-wrapper"><img data-img-size-val="1080,302" src="https://img.36krcdn.com/hsossms/20250422/v2_c952fd0bb25f4ade9ccdce720537aea7@46958_oswg190995oswg1080oswg302_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <p><strong>评估数据</strong></p>
+  <p>为了确保所使用的软件故障记录和运维数据的质量，OpenRCA 将往年 AIOps 挑战赛系列中提供的大量来自企业系统的匿名运维数据集合作为数据源。为保障数据质量的可靠性，研究者进行了包括四个步骤在内的人工数据处理和标签对齐。具体来说，研究者排除了无法用于根因定位的系统观测数据，这些数据通常仅能用于粗粒度异常检测，而缺乏详细的故障记录，例如故障原因等信息。接着，研究者整理了这些系统的数据，对不同系统间的样本数量进行了均衡化处理，并标准化了不同系统数据的目录结构，以便于模型的检索。最重要的是，为保证问题的可解性，研究者手动验证了剩余数据中的故障是否可以通过相数据人工定位到故障根因。研究者去除了满足以下任一条件的数据记录：（1）无法数据中识别根因；（2）故障期间数据缺失；（3）从数据推断出的根因与标签不一致。最终，研究者根据不同的根因定位目标，使用 LLM 为每个故障案例生成了相应的查询指令，并将其对应的根因元素作为标签，构建了 335 个根因定位问题。</p>
+  <p class="image-wrapper"><img data-img-size-val="1080,302" src="https://img.36krcdn.com/hsossms/20250422/v2_393a575cbe294f18858694b5debe11c6@46958_oswg133033oswg1080oswg302_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <h2><strong>基线方法</strong></h2>
+  <p>为了评估当前 LLM 解决 OpenRCA 问题的能力，研究者构建了三种基线方法，其中两个是基于采样的 Prompting 方法，一个是基于简单的 ReAct 的 Agentic 方法。</p>
+  <p><strong>Sampling-based Prompting</strong></p>
+  <p>运维可观测数据规模庞大，而 LLM 的上下文窗口有限，因此直接输入全部数据并不现实。在传统根因分析中，常见的处理方式是采样。研究者将所有数据（包括追踪、日志和指标）按每分钟一个值进行下采样，并对具体的指标类型进一步抽样以减少 KPI 序列的数量。研究者采用了两种策略来执行这种抽样：</p>
+  <ul>
+   <li>Balanced Sampling：采用分层抽样策略，即从每类 KPI 中随机选取一个，循环进行，直到达到模型的 token 上限。该方法简单实用，确保 KPI 类型的分布均衡。为保证可重复性，研究者对每种配置测试三次，并报告中位数结果。</li>
+   <li>Oracle Sampling：为研究抽样方法的性能上限，研究者引入了 oracle 策略，即使用在基准构建中已经被工程师验证能够有效定位根因的 KPI 集合作为固定的输入。虽然这种方法在在实际场景中并不现实，但能体现采样的能力上限。</li>
+  </ul>
+  <p><strong>RCA-agent</strong></p>
+  <p>尽管采样可缓解长上下文的问题，但运维数据中仍包含大量非自然语言（如 GUID、错误码等），LLM 处理此类信息的能力有限。为此，研究者设计了 RCA-agent，一个基于 Python 的代码生成与执行反馈的轻量 Agent 框架，允许模型使用数据检索和分析工具以提升模型对复杂数据的理解与操作能力。RCA-agent 由两部分组成：</p>
+  <ul>
+   <li>Controller：负责决策与流程控制，引导模型完成异常检测 → 故障识别 → 根因定位的分析流程。每个步骤都会要求 Executor 完成单一原子化的任务，并根据返回结果来决策下一步。</li>
+   <li>Executor：根据控制器指令生成并执行 Python 代码，并返回结果。其包含 LLM 代码生成器与 Python 执行环境。所有代码与变量均缓存于内存中，直至整个任务完成。</li>
+  </ul>
+  <p class="image-wrapper"><img data-img-size-val="1080,198" src="https://img.36krcdn.com/hsossms/20250422/v2_62791163a2114e319c87d105e816ce15@46958_oswg59001oswg1080oswg198_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <h2><strong>主要实验</strong></h2>
+  <p>为了评测当前大模型解决 OpenRCA 问题的能力，研究者挑选了六个至少具有 128k token 上下文长度的模型，如 Claude 3.5 sonnet, GPT-4o, Gemini 1.5 pro 等。结果显示：</p>
+  <ul>
+   <li>基于智能体的方法的能力上限比提示词方法更好。</li>
+   <li>当前模型在解决 OpenRCA 问题上仍面临挑战。</li>
+  </ul>
+  <p class="image-wrapper"><img data-img-size-val="1080,368" src="https://img.36krcdn.com/hsossms/20250422/v2_45cc5e7c98b34b37838bb7b49059ab06@46958_oswg69835oswg1080oswg368_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <p class="img-desc">表 1 基线方法的准确率对</p>
+  <p class="image-wrapper"><img data-img-size-val="1080,257" src="https://img.36krcdn.com/hsossms/20250422/v2_4f40000771c1433d8dac6a6d181b3dba@46958_oswg48880oswg1080oswg257_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <p class="img-desc">图 2 模型在各个系统上的准确率分布</p>
+  <p>通过进一步分析，研究者观察到当前模型倾向于使用更短的交互（6-10 步）来解决问题。然而，交互次数更多的情况下，问题的正确率通常更高。其次，研究者发现模型的代码生成和代码纠错能力会大幅影响其在 RCA-agent 上的表现。在仅考虑那些执行轨迹中出现过代码运行失败情况的例子中，Claude 3.5 sonnet 的正确率仅下降了 17.9% (11.34-&gt;9.31)。而 Gemini 1.5 pro 则下降了 68.4% (2.69-&gt;0.85)。这些发现可能的启发是，在以基于代码执行的智能体方法解决 OpenRCA 问题时，需尽可能使用代码能力更强的模型进行更长链条的交互和思考。</p>
+  <p class="image-wrapper"><img data-img-size-val="1080,302" src="https://img.36krcdn.com/hsossms/20250422/v2_57c9db67c25245ec926c4bbe3eb443b2@46958_oswg75486oswg1080oswg302_img_000?x-oss-process=image/format,jpg/interlace,1"></p>
+  <p class="img-desc">图 3：交互链条长度的分布；图 4：正确率随交互链条长度的分布；表 2：模型代码执行有错时的正确率</p>
+  <h2><strong>使用指南</strong></h2>
+  <p>OpenRCA 数据、文档、以及相关代码已开源在仓库中：https://github.com/microsoft/OpenRCA</p>
+  <p>要使用 OpenRCA 数据，需要首先将原始数据下载到本地。每个子数据集下都有若干个以日期命名的运维数据目录，以及一份原始数据记录 (record.csv) 和问题清单 (query.csv) 使用者需要让他们的方法能够访问对应的运维数据目录，来解决问题清单上的问题。最后，使用者可以利用仓库中的评估脚本 (evaluate.py) 来评估其方法的结果正确性。</p>
+  <p>如果使用者希望公开他们的评估结果在 OpenRCA 的评测榜单上（https://aka.ms/openrca），可以把他们方法的名称、原始结果文件、跑分、执行轨迹（如果有）、仓库连接（如果开源）发送到 openrcanon@gmail.com。我们将在确认结果可信度之后尽快将结果更新在排行榜上。</p>
+  <h2><strong>结语</strong></h2>
+  <p>大模型在软件工程领域的研究仍然是一片蓝海。本文聚焦于提供一个任务定义清晰且数据开放的代理任务数据集，来允许各种不同的大模型 RCA 方法使做公平对比。本文的评测也仅局限于大模型本身的 RCA 能力上。在实际应用中，还有许多可以进一步工程优化的点，如配置定制化工具来避免模型完全自由推理和编码产生的幻觉问题。希望这篇论文能抛砖引玉，激发更多软件工程任务上的大模型研究的产生。</p>
+  <p class="editor-note">本文来自微信公众号<a target="_blank" rel="noopener noreferrer nofollow" href="https://mp.weixin.qq.com/s/QO-RfxT9iGbxwCBLnzYjQw">“机器之心”</a>，36氪经授权发布。</p>
+ 
+</div></div><div class="common-width"><div class="article-footer-txt"><p>该文观点仅代表作者本人，36氪平台仅提供信息存储空间服务。</p></div></div></div></div></div><div class="ad87-box"><div><div class="kr-ad-article-detail-817"><span class="kr-ad-logo">商业视角</span><div class="kr-ad-article-detail-817-main"><a href="https://adx.36kr.com/api/ad/click?sign=3a5a521e8774316e4ec730c830187cd8&amp;param.redirectUrl=aHR0cDovLzM2a3IuY29tL21mb3JtLzMyMjI4ODE4OTYyMDQ0MTk&amp;param.adsdk=hqP4tkYKFi2JzIT2NcEbZoWZsFq2xFZj_SmmIYsllFLj8dUecWQeVv_4vlUEM8i1_RkbdGpRxVzXY_yPR4Cdxg" target="_blank" rel="noopener noreferrer nofollow" sensors_operate_type="click" sensors_position_id="817" sensors_media_content_id="22712"><div class="kr-default-img-no-logo "></div></a></div></div></div></div><div class="thumb-up-box"><div class="thumb-inner"><div class="thumb-wrapper"><div class="backgroundImg-box-wrapper"><div class="backgroundImg-box showNormal"><span class="kr-article-tranistion-thumb  normalColor">+1</span><div class="thumbNum normalColor">7</div></div></div><p class="txt">好文章，需要你的鼓励</p></div></div></div><div class="navbar-wrapper"><div class="navbar-inner-box fixed" style="transition: transform 500ms;"><div class="kr-card"><div class="top-line" style="height: 4px;"></div><div class="kr-card-content article-detail-navbar"><div class="wrapper" style="width: 100%; height: 70px;"><div class="inner"><a class="author-avrtar" href="/user/214166" target="_blank" rel="noopener noreferrer"><div class="kr-avatar author-avatar-img" style="background-image: url(&quot;https://img.36krcdn.com/20200331/v2_72bf4d2901734524a68ff03757327b9e_img_000?x-oss-process=image/resize,w_300&quot;);"><i class="kr-avatar-v " style="width: 14px; height: 14px; background-image: url(&quot;//static.36krcdn.com/36kr-web/static/ic_authentication_currency@3x.ad22d0c4.png&quot;);"></i></div></a><a class="author-name" href="/user/214166" target="_blank" rel="noopener noreferrer">机器之心</a><span class="author-level">特邀作者</span><div class="actions-Items"><div class="items-inner"><div class="item item1"><span class="item-collection-action item-common"><b class="favorite-count item-count-common">0</b><i class="collect-icon item-icon">收&nbsp;&nbsp;藏</i><span class="count-animation-collect ">+1</span><span class=""></span></span><span class="item-tocomment-action item-common "><b class="comment-count item-count-common">0</b><i class="tocomment-icon item-icon">评&nbsp;&nbsp;论</i></span></div><div class="item item2"><span class="item-share-weixin item-common"><span class="weixin-icon item-icon"><div class="kr-default-img-no-logo weixin-code"></div><i class="weixin-txt">打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</i></span></span><a class="item-share-weibo item-common" href="https://service.weibo.com/share/share.php?appkey=595885820&amp;url=https://36kr.com/p/3261133011681417&amp;title=连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？" target="_blank" rel="noopener noreferrer nofollow"><i class="weibo-icon item-icon">微&nbsp;&nbsp;博</i></a></div><div class="item item3"><span class="item-pure-action item-common"><i class="pure-icon item-icon">沉浸阅读</i></span><span class="item-backtop-action item-common"><i class="totop-icon item-icon">返回顶部</i></span></div><div class="item item4"><span class="item-report">举报</span></div></div></div></div></div></div></div></div></div><div></div><div class="kr-article-commitbox-left-navbar-bottom"><div class="kr-plugin-comment " title="参与评论"><div class="comment-part"><div class="comment-part-title"><div class="kr-column-title"><span class="kr-column-title-icon"></span><span class="kr-column-title-text weight-bold">参与评论</span></div></div><div class="comment-input-content"><div class="comment-input-wrapper"><div class="comment-input-nologin">评论千万条，友善第一条</div></div><div class="comment-control"><div class="comment-control-nologin"><a class="login-link">登录</a>后参与讨论</div><span class="comment-control-submit"><span>提交评论</span></span><span class="length-tip">0/1000</span></div></div></div></div></div><div class="ad817-box"></div><div class="relate-articles"><div class="relate-articles-inner-wrapper"><div class="kr-column-title"><span class="kr-column-title-icon"></span><span class="kr-column-title-text weight-bold">你可能也喜欢这些文章</span></div><div class="data-list"><div class="list-item"><a class="article-item-pic" href="/p/3261133086015618" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261133086015618" target="_blank">AI也要007？Letta、伯克利提出「睡眠时间计算」，推理效率翻倍还不加钱</a></div><div class="list-item"><a class="article-item-pic" href="/p/3261159486848776" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261159486848776" target="_blank">AI挤占人类音乐，如何反制？</a></div><div class="list-item"><a class="article-item-pic" href="/p/3261150986206980" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261150986206980" target="_blank">Anthropic分析了70万条Claude对话，发现AI已形成自有价值观</a></div><div class="list-item"><a class="article-item-pic" href="/p/3261053335240450" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261053335240450" target="_blank">豆包斗元宝，开始拼社交</a></div><div class="list-item"><a class="article-item-pic" href="/p/3261033484370049" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261033484370049" target="_blank">2025中国AI出海洞察</a></div><div class="list-item"><a class="article-item-pic" href="/p/3260942128939144" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3260942128939144" target="_blank">Claude竟藏着3307种「人格」？深扒70万次对话，这个AI会看人下菜碟</a></div><div class="list-item"><a class="article-item-pic" href="/p/3261033046818567" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3261033046818567" target="_blank">Anthropic重磅研究：70万对话揭示AI助手如何做出道德选择</a></div><div class="list-item"><a class="article-item-pic" href="/p/3260688892395656" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3260688892395656" target="_blank">后DeepSeek时代，AI应用如何度过“超越之年”？ | 2025 AI Partner大会</a></div><div class="list-item"><a class="article-item-pic" href="/p/3260942475444360" target="_blank"><div class="kr-default-img-no-logo scaleBig"></div></a><a class="article-item-title" href="/p/3260942475444360" target="_blank">清华特奖得主团队视频生成AI一夜刷屏，100%开源+61页技术报告，还能无限扩展生成，网友：游戏规则改变者</a></div></div></div></div><div id="_popIn_recommend"></div><script type="text/javascript">
+        (function() {
+
+            var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.charset = "utf-8"; pa.async = true;
+
+            pa.src = window.location.protocol + "//api.popin.cc/searchbox/36kr_cn.js";
+
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+
+        })(); 
+        </script></div><div class="article-right-container"><div class="app-track-card"><div class="qrcode-wrapper "><span class="qrcode-img"><span data-adaption="cover" style="display: block; height: 100%; width: 100%; background-position: center center; background-repeat: no-repeat; background-size: cover; overflow: hidden; background-image: unset;"><img id="h_07e315f6" data-server-render="false" src="//static.36krcdn.com/36kr-web/static/qr_img.bd73a0ad.png" alt="" style="height: 100%; width: 100%; object-fit: cover; transition: 0.3s; opacity: 1; display: block;"></span></span></div></div><div class="list-author-wrapper"><div class="kr-card"><div class="top-line" style="height: 4px;"></div><div class="kr-card-content "><div class="author-detail-info "><div class="author-detail-info-header clearfix"><a href="/user/214166" target="_blank" rel="noopener noreferrer"><div class="kr-avatar author-avatar" style="background-image: url(&quot;https://img.36krcdn.com/20200331/v2_72bf4d2901734524a68ff03757327b9e_img_000?x-oss-process=image/resize,w_300&quot;);"><i class="kr-avatar-v " style="width: 24px; height: 24px; background-image: url(&quot;//static.36krcdn.com/36kr-web/static/ic_authentication_currency@3x.ad22d0c4.png&quot;);"></i></div></a><div class="info-header-text"><div class="clearfix"><div><a class="author-name ellipsis-1 active" href="/user/214166" target="_blank" rel="noopener noreferrer">机器之心</a></div></div><div class="author-role-wrapper" style="margin-top: 3px;"><span class="author-role ">特邀作者</span></div></div></div><p class="author-description">专业的人工智能媒体和产业服务平台</p><div class="author-detail-info-footer"><div class="author-article-count"><i></i><span>发表文章696篇</span></div></div><div class="author-wrapper"><div class="inner-wrapper"><div class="section"><h3 class="section-h3">最近内容</h3><div class="author-itemslist"><div class="item-wrapper-box"><a target="_blank" rel="noopener noreferrer " class="item-title" href="/p/3261133086015618" sensors_operation_list="author_latest_article">AI也要007？Letta、伯克利提出「睡眠时间计算」，推理效率翻倍还不加钱</a><div class="item-related-info"><span class="time item">21分钟前</span></div></div></div><div class="author-itemslist"><div class="item-wrapper-box"><a target="_blank" rel="noopener noreferrer " class="item-title" href="/p/3261133011681417" sensors_operation_list="author_latest_article">连Claude 3.5都败下阵来，大语言模型能否定位软件服务的故障根因？</a><div class="item-related-info"><span class="time item">1小时前</span></div></div></div><div class="author-itemslist"><div class="item-wrapper-box"><a target="_blank" rel="noopener noreferrer " class="item-title" href="/p/3252353923948806" sensors_operation_list="author_latest_article">Mogao=Seedream 3.0？霸榜数天，神秘文生图模型曝光（附技术报告）</a><div class="item-related-info"><span class="time item">2025-04-16</span></div></div></div></div></div><div class="footer"><a class="footer-a" href="/user/214166" target="_blank" rel="noopener noreferrer " sensors_operation_list="author_latest_article"><span>阅读更多内容，狠戳这里</span></a></div></div></div></div></div></div><div class="article-803-ad-wrappper"></div><div class="article-814-ad-wrappper"></div><div><div class="article-OrganArticle-wrappper"></div><div class="article-Enterprise-wrappper"><div class="kr-article-enterprise-cards-wrapper"></div></div></div><div class="kr-recom-enterprise-article"><div class="kr-follow
+        
+        
+        " style="top: 30px;"></div></div><div id="article-detail-right-qifu"></div><div id="article-detail-right-qifu-script"></div><div class="kr-article-follow"><div class="kr-follow
+        
+        
+        " style="top: 30px;"><div class="article-follow-content"><div class="next-card-wrapper-box"><div class="kr-card"><div class="top-line" style="height: 4px;"></div><div class="kr-card-content "><div class="next-cart-wrapper" style="padding: 15px;"><h3 class="header" style="font-size: 16px; line-height: 25px;">下一篇</h3><div class="section"><div class="section-title section-item ellipsis-2" style="font-size: 14px; line-height: 25px;"><a href="/p/3261132880019206" target="_blank" rel="noopener noreferrer " class="section-title-a ellipsis-2" sensors_operation_list="next_card">上海一举出资6家GP</a></div><p class="section-brief section-item ellipsis-2">一级市场活水。</p><p class="section-publice-at section-item">1小时前</p></div></div></div></div></div></div></div></div></div></div></div><div></div></div></div></div></div></div><div class="kr-footer "><div class="footer-content"><div class="footer-wrapper"><div class="about36kr-wrapper"><div class="title weight-bold">关于36氪</div><div class="list-wrapper"><li><a href="/station-business" rel="noopener noreferrer nofollow" target="_blank">城市合作</a></li><li><a href="/seek-report-new" rel="noopener noreferrer nofollow" target="_blank">寻求报道</a></li><li><a>我要入驻</a></li><li><a href="http://ir.36kr.com" rel="noopener noreferrer nofollow" target="_blank">投资者关系</a></li></div><div class="list-wrapper"><li><a rel="noopener noreferrer nofollow">商务合作</a></li><li><a href="/pages/about" target="_blank" rel="noopener noreferrer nofollow">关于我们</a></li><li><a>联系我们</a></li><li><a href="https://zhaopin.36kr.com" rel="noopener noreferrer nofollow" target="_blank">加入我们</a></li><li style="height: 0px; width: 0px; opacity: 0; overflow: hidden;"><a href="https://eu.36kr.com" target="_blank" style="display: block; opacity: 0;">36氪欧洲站</a><a href="https://eu.36kr.com/zh" target="_blank" style="display: block; opacity: 0;">36氪欧洲站</a><a href="https://eu.36kr.com/de" target="_blank" style="display: block; opacity: 0;">36氪欧洲站</a><a href="https://www.aicpb.com" target="_blank" style="display: block; opacity: 0;">Ai产品日报</a></li></div><div class="list-one-wrapper"><a href="/refute-rumor-notice" rel="noopener noreferrer nofollow" target="_blank">网络谣言信息举报入口</a></div></div><div class="hotRecommend-wrapper"><div class="title weight-bold">热门推荐</div><div class="list-wrapper"><li><a href="/hot-list/catalog" rel="noopener noreferrer" target="_blank">热门资讯</a></li><li><a href="/project" rel="noopener noreferrer" target="_blank">热门产品</a></li><li><a href="/tags" rel="noopener noreferrer" target="_blank">文章标签</a></li><li><a href="/nftags" rel="noopener noreferrer" target="_blank">快讯标签</a></li></div></div><div class="parters-wrapper"><div class="title weight-bold">合作伙伴</div><ul class="footer-partner"><li><a href="https://www.aliyun.com/" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="阿里云" data-src="//static.36krcdn.com/36kr-web/static/aly.e9118f2f.png"></a></li><li><a href="https://www.volcengine.cn/" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="火山引擎" data-src="//static.36krcdn.com/36kr-web/static/bytey.7484dc04.png"></a></li><li><a><img src="" alt="高德" data-src="//static.36krcdn.com/36kr-web/static/gaodi.9e9d6741.png"></a></li><li><a href="https://www.getui.com/cn/index.html" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="个推" data-src="//static.36krcdn.com/36kr-web/static/getui.d2af25d2.png"></a></li><li><a href="https://www.odaily.com" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="星球日报" data-src="//static.36krcdn.com/36kr-web/static/dailyPlanet.783b0e10.png"></a></li><li><a href="https://www.jingdata.com" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="鲸准" data-src="//static.36krcdn.com/36kr-web/static/logo_jz@2x.525a51f1.png"></a></li><li><a href="https://www.krspace.cn" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="氪空间" data-src="//static.36krcdn.com/36kr-web/static/logo_kkj@2x.47737e8d.png"></a></li><li><a href="https://www.futunn.com/" target="_blank" rel="noopener noreferrer nofollow"><img src="" alt="富途牛牛" data-src="//static.36krcdn.com/36kr-web/static/ftnn.4f5db2d2.png"></a></li><li><a href="https://www.36dianping.com/pk/" target="_blank" rel="noopener noreferrer"><img src="" alt="企服点评" data-src="//static.36krcdn.com/36kr-web/static/logo_qifudianping@2x.c5635d6a.png"></a></li><li><a href="http://www.woshipm.com" target="_blank" rel="noopener noreferrer"><img src="" alt="人人都是产品经理" data-src="//static.36krcdn.com/36kr-web/static/renren@2x.f6ecd8fa.png"></a></li><li><a href="https://www.36linkr.com" target="_blank" rel="noopener noreferrer"><img src="" alt="领氪" data-src="//static.36krcdn.com/36kr-web/static/lingke.34f56307.PNG"></a></li></ul></div><div class="appDownload-wrapper"><div class="title weight-bold">36氪APP下载</div><img src="//static.36krcdn.com/36kr-web/static/code_production.72d61993.png" alt=""><div class="info">iOS &amp; Android</div></div><div class="footerInfo-wrapper"><a href="https://36kr.com/" class="footer-logo"><img src="" alt="36氪" data-src="//static.36krcdn.com/36kr-web/static/logoWhite.2a5eceda.png"></a><div class="footer-center"><div class="footer-center-top">本站由&nbsp;<span><a href="https://www.aliyun.com/" target="_blank" rel="noopener noreferrer nofollow">阿里云&nbsp;</a>提供计算与安全服务&nbsp;违法和不良信息、未成年人保护举报电话：010-89650707&nbsp;举报邮箱：jubao@36kr.com&nbsp;<a href="https://www.12377.cn" target="_blank" rel="noopener noreferrer nofollow" style="font-weight: normal;">网上有害信息举报</a></span></div><div class="footer-center-bottom"><span class="license-wrapper"><div class="license-pic"></div><span class="text">© 2011~2025 北京多氪信息科技有限公司 | </span></span><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">京ICP备12031756号-6</a> | <a href="https://dxzhgl.miit.gov.cn/dxxzsp/xkz/xkzgl/resource/qiyesearch.jsp?num=%25E5%258C%2597%25E4%25BA%25AC%25E5%25A4%259A%25E6%25B0%25AA%25E4%25BF%25A1%25E6%2581%25AF%25E7%25A7%2591%25E6%258A%2580%25E6%259C%2589%25E9%2599%2590%25E5%2585%25AC%25E5%258F%25B8&amp;type=xuke" target="_blank">京ICP证150143号</a> | <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502036099" target="_blank" rel="noopener noreferrer nofollow"> 京公网安备11010502036099号</a></div></div><div class="share"><a href="https://weibo.com/wow36kr" rel="noopener noreferrer nofollow" target="_blank"><span class="iconSinaWeibo"></span></a><a href="/rss-center" target="_blank" rel="noopener noreferrer"><span class="iconRss"></span></a></div></div></div></div></div><div class="assit-wrapper undefined"><a href="https://36kr.com/mform/1755983296602372" rel="noopener noreferrer nofollow" target="_blank" class="feedBack"><div class="feedBack-img"></div><div class="feedText">意见反馈</div></a><div class="phone"><div class="phone-img"></div><div class="phone-content"><img src="//static.36krcdn.com/36kr-web/static/code_production.72d61993.png" alt=""><div class="content"><span>36氪APP</span><span>让一部分人先看到未来</span></div></div></div><div class="code"><div class="code-img"></div><div class="code-content"><div class="tabs"><div data-index="0" class="bg">36氪</div><div data-index="1">鲸准</div><div data-index="2">氪空间</div></div><div class="tab-content"><div style="display: block;"><img src="//static.36krcdn.com/36kr-web/static/kr.ad0c1158.jpg" alt=""><p>推送和解读前沿、有料的科技创投资讯</p></div><div style="display: none;"><img src="//static.36krcdn.com/36kr-web/static/jingzhun.9a251862.jpg" alt=""><p>一级市场金融信息和系统服务提供商</p></div><div style="display: none;"><img src="//static.36krcdn.com/36kr-web/static/krSpace.7efbe7d3.jpg" alt=""><p>聚焦全球优秀创业者，项目融资率接近97%，领跑行业</p></div></div></div></div><div class="top"><div class="top-img"></div></div></div></div></div><div class="pure-article-wrapper-box"><div class="article-pureReading-wrapper"><div class=" article-pureReading-inner"></div></div></div></div></div>
+<script>window.initialState={"state":"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","isEncrypt":true}</script>
+<script src="//static.36krcdn.com/36kr-web/static/runtime.4e4faa99.js" type="text/javascript"></script><script src="//static.36krcdn.com/36kr-web/static/app.99d4492b.js" type="text/javascript"></script>
+
+</body></html>
