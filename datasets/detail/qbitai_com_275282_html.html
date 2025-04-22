@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="zh-CN" class="js" data-dpr="1" style="font-size: 54px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="shortcut icon" href="/wp-content/themes/liangziwei/imgnew/favicon.ico">
+        <link rel="pingback" href="https://www.qbitai.com/xmlrpc.php">
+        <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-6P7RXJKJRT&amp;cx=c&amp;_slc=1"></script><script src="https://zz.bdstatic.com/linksubmit/push.js"></script><script src="https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5"></script><script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>微软开源"原生1bit"三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当 | 量子位</title>
+
+<!-- All in One SEO Pack 2.12 by Michael Torbert of Semper Fi Web Design[506,580] -->
+<meta name="description" content="能在苹果M2 CPU上快速运行">
+
+<meta name="keywords" content="原生1bit llm,微软">
+
+<link rel="canonical" href="https://www.qbitai.com/2025/04/275282.html">
+			<script type="text/javascript">
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-138537228-1', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+			<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="量子位 » Feed" href="https://www.qbitai.com/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » 评论Feed" href="https://www.qbitai.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » 微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当评论Feed" href="https://www.qbitai.com/2025/04/275282.html/feed">
+<link rel="stylesheet" id="wp-block-library-css" href="https://www.qbitai.com/wp-includes/css/dist/block-library/style.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style1-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/bootstrap.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style2-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/swiper.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style3-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/font-awesome.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style4-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/base.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style5-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style6-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/wbshare.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style7-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/zk_style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style8-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/ai_style.css?ver=5.0.15" type="text/css" media="all">
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/popper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.offcanvas.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible_css.debug.js?ver=5.0.15"></script><style>@charset "utf-8";html{color:#000;background:#fff;/*overflow-y:scroll;*/-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible.debug.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/swiper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/qrcode.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/yao.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ScrollPic.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/zktag.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery-1.7.1.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ai_playBox.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel="https://api.w.org/" href="https://www.qbitai.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.qbitai.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.qbitai.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="SkyReels-V2开源：突破视频生成技术边界，开启无限时长电影生成新时代" href="https://www.qbitai.com/2025/04/275232.html">
+<link rel="next" title="特斯拉机器人史上最大规模招聘！三年打造50万台规模，不仅送进厂还要送“上天”" href="https://www.qbitai.com/2025/04/275299.html">
+<meta name="generator" content="WordPress 5.0.15">
+<link rel="shortlink" href="https://www.qbitai.com/?p=275282">
+<link rel="alternate" type="application/json+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275282.html">
+<link rel="alternate" type="text/xml+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275282.html&amp;format=xml">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		    <!--[if IE 8]>
+        <link id="liangziwei-ie7-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie8_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <!--[if IE 9]>
+            <link id="liangziwei-ie8-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie9_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <script type="text/javascript">
+        $("#top_search").click(function(){
+            $("#search").toggle()
+        });
+        $(document).click(function(){
+            $(".weixin_pop").hide();
+        });
+    </script>
+    <style type="text/css">
+        blockquote {
+            margin: 1.4em 0;
+            padding-left: 1em;
+            color: #646464;
+            border-left: 3px solid #D3D3D3;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 40px;
+            margin-inline-end: 40px;
+        }
+    </style>
+</head>
+<body class="body-offcanvas" style="font-size: 12px;">
+<header class="top">
+    <div class="top_logo">
+        <div class="nav_box">
+                        <button type="button" class="navbar-toggle offcanvas-toggle js-offcanvas-has-events" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;"></button>
+            <nav class="navbar navbar-default navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-fade offcanvas-transform js-offcanas-done" role="navigation" id="js-bootstrap-offcanvas">
+                                    <div class="container-fluid"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav navbar-nav"><li id="menu-item-110" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-110"><a href="http://www.qbitai.com/">首页</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-107"><a href="https://www.qbitai.com/category/%e8%b5%84%e8%ae%af">资讯</a></li>
+<li id="menu-item-1907" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1907"><a href="https://www.qbitai.com/category/ebandeng">数码</a></li>
+<li id="menu-item-26804" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26804"><a href="https://www.qbitai.com/category/auto">智能车</a></li>
+<li id="menu-item-110561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-110561"><a href="https://www.qbitai.com/category/zhiku">智库</a></li>
+<li id="menu-item-17709" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17709"><a href="https://www.qbitai.com/category/huodong">活动</a></li>
+<li id="menu-item-10902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10902"><a href="https://www.qbitai.com/meet/meet2025/">MEET大会</a></li>
+<li id="menu-item-53733" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-53733"><a href="https://www.qbitai.com/meet/aigc2024/">AIGC</a></li>
+</ul></div>                            </nav>
+                    </div>
+        <div class="logo"><a href="https://www.qbitai.com/"></a></div>
+        <div class="top_r_icons">
+                        <div class="top_weixin"><a href="javascript:void(0)" class="biaojiwei"><i class="fa fa-weixin"></i></a>
+                                <div class="weixin_pop" style="display:none" id="pophead">
+               <p>扫码关注量子位</p>
+               <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+        </div>
+         </div>
+            <div class="top_weibo"><a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i></i></a></div>
+            
+<!--             <div class="top_search">
+                <form role="search" method="get" class="search-form" action="https://www.qbitai.com/" id="search">
+                <label>
+                    <input type="search" class="search-field" placeholder="搜索…" value="" name="s">
+                </label>
+                <button type="submit" class="search-submit"></button>
+                </form>
+            </div> -->
+        </div>
+        <script type="text/javascript">
+        $('.biaojiwei').click(function(){
+            $('.biaojiwei').click(function(event){
+                event.stopPropagation();
+                $('#pophead').show();
+            })
+            $('.weixin_pop').click(function(){
+                $('.weixin_pop').hide();
+            })
+        })
+        </script>
+        <div class="share_box">
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+		
+
+<div class="main">
+    	<div class="content">
+      <!-- articlead begin-->
+                    <!-- articlead end-->
+        	<div class="article">
+				     <h1>微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当</h1>
+    			   <div class="article_info">
+             <span class="author"><img src="http://www.qbitai.com/wp-content/themes/liangziwei/imagesnew/head.jpg" class="avatar avatar-200" height="200" width="200"><em><a href="https://www.qbitai.com/author/xifeng" title="由西风发布" rel="author">西风</a></em></span>
+                          <span class="date">2025-04-21</span>
+             <span class="time">12:24:37</span>
+          <span class="from">
+          来源：<a href="http://www.qbitai.com" target="blank" rel="nofllow">量子位</a>            </span></div>
+                          <!--摘要样式-->
+            <div class="zhaiyao"><p>能在苹果M2 CPU上快速运行</p>
+</div>                			<blockquote data-pm-slice="0 0 []">
+<p class="pgc-h-arrow-right" data-track="46">西风 发自 凹非寺</p>
+<p class="pgc-h-arrow-right" data-track="47">量子位 | 公众号 QbitAI</p>
+</blockquote>
+<p data-track="2">微软以小搏大，发布首个开源2B参数规模“<strong>原生1bit</strong>”LLM——</p>
+<p data-track="3"><strong>BitNet b1.58 2B4T</strong>，单CPU就能跑，性能与同规模全精度开源模型相当。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/3c35c3893c904a704a6fae98bf3b9cc6.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="667" data-ic-uri=""></div>
+<p data-track="4">它采用三进制<strong>{-1, 0, 1}</strong>存储权重，相较于传统的16位浮点数可大幅降低显存需求。</p>
+<p data-track="5"><strong>只需0.4GB内存即可运行。</strong></p>
+<p data-track="6">基于4T token语料训练，BitNet b1.58 2B4T在保持性能的同时，计算效率突出。</p>
+<p data-track="7">单个CPU即可达到“与人类阅读速度”相当的速度，每秒5-7个token，CPU端解码延迟29ms，能耗低至0.028J。</p>
+<p data-track="8">这种效率使其可在普通笔记本电脑甚至边缘设备上实时运行。</p>
+<p data-track="9">例如在苹果M2 CPU上快速运行：</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/f15a87a023e792a58a6c7216a924d868.gif" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="628" data-height="420" data-ic-uri=""></div>
+<p data-track="10">另外值得一提的是，BitNet b1.58 2B4T具有<strong>原生训练优势</strong>，与训练后量化<em>（PTQ）</em>模型对比，<strong>避免了PTQ常见的性能衰减</strong>。</p>
+<p data-track="11">BitNet b1.58 2B4T刚发布就吸引了大量网友点赞关注，作者们也当起了自己个儿的自来水。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/44093104ed4ea9ea57169033e7c3d12c.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="996" data-ic-uri=""></div>
+<p data-track="12">如何实现原生1bit？话不多说，一起来看看技术详情。</p>
+<h1 class="pgc-h-arrow-right" spellcheck="false" data-track="13">权重映射为三元值{-1, 0, +1}</h1>
+<p data-track="14">BitNet b1.58 2B4T模型基于Transformer架构，对核心组件进行了系统性改造。<br>
+传统LLM依赖16bit或32bit浮点数存储权重，而BitNet b1.58 2B4T采用一种称为<strong>absmean的量化方案</strong>，将权重映射为三元值{-1, 0, +1}，平均每个权重仅需1.58bit（log₂3≈1.58）来表示。</p>
+<p data-track="15">模型内存占用骤降至0.4GB，仅为同类全精度模型的1/5-1/12。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/76ac39b4f7f90a41458215702acad5e5.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="924" data-height="750" data-ic-uri=""></div>
+<p data-track="16">另外，线性投影中的激活值被量化为8bit整数，采用基于每token的<strong>absmax量化</strong>策略，团队还引入<strong>subln归一化</strong>，增强量化训练稳定性。</p>
+<p data-track="17">其它关键设计包括：</p>
+<ul>
+<li data-track="18"><strong>激活函数</strong>：前馈网络（FFN）子层采用ReLU²替代常见的SwiGLU，通过提升模型稀疏性，优化了1bit环境下的计算特性。</li>
+<li data-track="19"><strong>位置编码</strong>：使用旋转位置嵌入（RoPE）。</li>
+<li data-track="20"><strong>偏置消除</strong>：与Llama等架构一致，所有线性层和归一化层均移除偏置项，减少参数量并简化量化流程。</li>
+</ul>
+<p data-track="21">训练方面，BitNet b1.58 2B4T采用三阶段训练：<strong>大规模预训练</strong>、<strong>监督微调</strong>（SFT）和<strong>直接偏好优化</strong>（DPO）。</p>
+<p data-track="22">先是大规模预训练，模型经历了两阶段学习率调度：得益于1bit模型的训练稳定性，初期采用高学习率快速收敛；中期骤降至低水平，使模型能在高质量数据上精细化调整。配合动态权重衰减策略，模型在保持泛化能力的同时避免过拟合。</p>
+<p data-track="23">监督微调（SFT）阶段，值得注意的是，训练中采用损失函数求和而非平均策略，并延长了训练轮次，这一调整被证明对低精度模型的收敛至关重要。</p>
+<p data-track="24">直接偏好优化（DPO）阶段，基于UltraFeedback、MagPie等人类偏好数据集，模型通过无奖励模型的直接优化，提升了回答的安全性与用户满意度，避免了传统RLHF的高计算成本。</p>
+<p data-track="25">实验效果方面，BitNet b1.58 2B4T内存占用仅为0.4GB，CPU端解码延迟29ms，能耗低至0.028J。</p>
+<p data-track="26">在数学推理任务GSM8K中，BitNet以58.38的准确率远超Llama 3.2-1B<em>（38.21）</em>和Qwen2.5-1.5B<em>（56.79）</em>；在常识推理任务WinoGrande中，BitNet 71.90的得分超同类模型均值（63.55）。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/ed2c094d3fa6f5bcaf600a30e432a2e4.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="972" data-height="1228" data-ic-uri=""></div>
+<p data-track="27">团队特别指出，BitNet b1.58 2B4T具有原生训练优势。与训练后量化<em>（PTQ）</em>模型对比，BitNet的原生1bit训练策略避免了PTQ常见的性能衰减。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/1c1cf518fe4e1e74b67670765811b95e.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1014" data-height="492" data-ic-uri=""></div>
+<p data-track="28">参数更大的Llama3-8B模型量化至1bit后，也难打BitNet b1.58 2B4T。</p>
+<p data-track="29">和其它1bit模型相比，BitNet b1.58 2B4T也有显著更强的整体性能，绝大多数基准测试中取得SOTA。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/990350cdf80c2b2954d3e645382594cd.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="881" data-ic-uri=""></div>
+<p data-track="30">有关BitNet b1.58 2B4T的具体表现，再来看几个例子。</p>
+<p data-track="31">让它生成几个笑话，笑话简短但也蛮有意思：</p>
+<blockquote>
+<p data-track="32">稻草人为何成为成功的神经外科医生？回答是因为它在自己的领域很杰出（outstanding in his field）。</p>
+</blockquote>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/9dc73e138c03250c53199fb313adda97.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="836" data-height="854" data-ic-uri=""></div>
+<p data-track="33">单CPU生成97个token，总耗时3.452秒，每秒处理 28.1 token。</p>
+<p data-track="34">再让它基于2000年的背景，让一位PowerPC处理器爱好者和一位英特尔处理器爱好者进行五行辩论。</p>
+<p data-track="35">BitNet b1.58 2B4T生成结果也很快，并且反映了那个时代科技行业的竞争特性。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/fb9df68ea4d493cae2333c69dc3934a4.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="818" data-height="638" data-ic-uri=""></div>
+<h1 class="pgc-h-arrow-right" spellcheck="false" data-track="36">微软在1 bit LLM上的探索</h1>
+<p data-track="37">1 bit LLM的实现方法，微软其实早在2023年就有相关研究，当时就称为BitNet，<strong>用BitLinear替换了nn.Linear</strong>。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/19b39e78046cca565a8f4d9e0311916b.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="408" data-ic-uri=""></div>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/47e05233aa8e07a9bcdabbd63b428b07.png" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="462" data-ic-uri=""></div>
+<p data-track="38">之后，微软原班人马在上一篇论文的基础之上做了优化，提出BitNet b1.58，在原始BitNet的基础上增加了一个额外的<strong>0值</strong>。</p>
+<p data-track="39">也就是“The Era of 1-bit LLMs”这篇论文，用6页研究引发网友广泛关注。</p>
+<div class="pgc-img"><img src="/wp-content/uploads/replace/616a99146b01c8363916d1cdbeee2d33.jpeg" alt="微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当" data-ic="false" data-width="1080" data-height="371" data-ic-uri=""></div>
+<p data-track="40">这种方法发布后，也有不少人在这项研究的基础之上进行探索。Huggingface Transformers还曾整合了BitNet b1.58，运用一些技巧，使得现有模型可以直接微调到1.58bit。</p>
+<p data-track="41">接着，微软还开发并<strong>开源了针对GPU和CPU平台的专用推理库</strong>。</p>
+<p data-track="42">BitNet b1.58采用独特量化方案（1.58bit权重和8bit激活值，W1.58A8）需要专门的实现，标准深度学习库通常缺乏针对这种混合精度、低比特格式的优化内核，微软开发了专门针对W1.58A8矩阵乘法的自定义CUDA内核。</p>
+<p data-track="43">另外，微软还开源了bitnet.cpp——一个用于1 bit LLM CPU推理的官方参考C++库，提供针对标准CPU架构优化的内核，旨在高效适配模型的特定量化方案，尽可能避免通用量化库的开销或复杂的底层位操作。</p>
+<p data-track="44"><em>技术报告：https://arxiv.org/abs/2504.12285</em><br>
+抱抱脸链接：https://huggingface.co/microsoft/bitnet-b1.58-2B-4T</p>
+<p data-track="45">参考链接：https://arstechnica.com/ai/2025/04/microsoft-researchers-create-super%e2%80%91efficient-ai-that-uses-up-to-96-less-energy/</p>
+                
+                <!--版权声明-->
+                <div class="line_font"><span></span><em>版权所有，未经授权不得以任何形式转载及使用，违者必究。</em><span></span></div>
+            </div>
+     		<div class="tags"><a href="https://www.qbitai.com/tag/%e5%8e%9f%e7%94%9f1bit-llm" rel="tag">原生1bit LLM</a> <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a></div>
+            <!--作者文章列表-->
+    		<div class="person_box">
+            	<a href="#" target="_blank"></a><div class="person_head"><a href="#" target="_blank"><img src="http://www.qbitai.com/wp-content/themes/liangziwei/imagesnew/head.jpg" class="avatar avatar-1024" height="1024" width="1024"><span></span></a><a href="https://www.qbitai.com/author/xifeng" title="由西风发布" rel="author">西风</a></div>
+                <div class="person_con">
+                	<ul>
+                                          <li><a href="https://www.qbitai.com/2025/04/274533.html" rel="bookmark" title="DeepSeek引爆「万物皆可AI」时代，20余位大咖分析行业痛点，万字梳理干货在此" target="_blank">DeepSeek引爆「万物皆可AI」时代，20余位大咖分析行业痛点，万字梳理干货在此</a><i>2025-04-17</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/274286.html" rel="bookmark" title="围绕多智能体黑箱非凸优化共识难题，华南理工大学团队发表系列研究" target="_blank">围绕多智能体黑箱非凸优化共识难题，华南理工大学团队发表系列研究</a><i>2025-04-17</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/273461.html" rel="bookmark" title="单图直出CAD工程文件！CVPR 2025新研究解决AI生成3D模型“不可编辑”痛点｜魔芯科技NTU等出品" target="_blank">单图直出CAD工程文件！CVPR 2025新研究解决AI生成3D模型“不可编辑”痛点｜魔芯科技NTU等出品</a><i>2025-04-14</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/273191.html" rel="bookmark" title="4090玩转大场景几何重建，RGB渲染和几何精度达SOTA｜上海AI Lab&amp;西工大新研究" target="_blank">4090玩转大场景几何重建，RGB渲染和几何精度达SOTA｜上海AI Lab&amp;西工大新研究</a><i>2025-04-13</i></li>
+                                      
+                    </ul>
+                </div>
+    		</div>
+            <!--左侧分享-->
+                        <div class="share_pc">
+            	<div class=" share_icon"></div>
+                <div class="share_weixin"><span id="weixin_qrcode"></span>
+        <div id="qrcode" style="display:none;" title="https://www.qbitai.com/2025/04/275282.html">扫码分享至朋友圈<canvas width="256" height="256" style="display: none;"></canvas><img alt="Scan me!" src="data:image/png;base64,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" style="display: block;"></div>
+        <div></div></div>
+
+                <a href="http://service.weibo.com/share/share.php?url=https://www.qbitai.com/2025/04/275282.html&amp;title=微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当&amp;appkey=4017757111&amp;searchPic=true&amp;ralateUid=6105753431" class="share_sina" data-cmd="tsina" title="分享到新浪微博" target="_blank"><div class="share_weibo"></div></a>
+                <a href=""><div class="share_qzone"></div></a>
+            </div>
+                        <script>
+                // 设置参数方式
+                var qrcode = new QRCode('qrcode', {
+                  text: 'https://www.qbitai.com/2025/04/275282.html',
+                  width: 256,
+                  height: 256,
+                  colorDark : '#000000',
+                  colorLight : '#ffffff',
+                  correctLevel : QRCode.CorrectLevel.H
+                });
+                </script>
+                <script>
+                var weixin_qrcode  = document.getElementById('weixin_qrcode');
+                var qrcode = document.getElementById('qrcode');
+                $(document).click(function(){
+                    $("#qrcode").hide();
+                });
+                weixin_qrcode.onclick = function(event){
+                    event.stopPropagation();
+                    var val = qrcode.style.display;
+                    if(val == 'none'){
+                        qrcode.style.display = 'block'; //显示
+                    }else{
+                        qrcode.style.display = 'none'; //隐藏
+                    }
+                }
+                qrcode.onclick = function(event){
+                        event.stopPropagation();
+                        qrcode.style.display = 'none'; //隐藏
+                }
+
+               
+
+                function shareToQq(title,url,picurl){
+                var shareqqzonestring='https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary='+title+'&url='+url+'&title='+title+'&pics='+picurl;
+                window.open(shareqqzonestring,'newwindow','height=400,width=400,top=100,left=100');
+                }
+                $('.share_qzone').click(function(e){
+                shareToQq("微软开源“原生1bit”三进制LLM：2B参数，0.4GB内存/单CPU就能跑，性能与同规模全精度开源模型相当","https://www.qbitai.com/2025/04/275282.html","https://www.qbitai.com/wp-content/uploads/2025/04/2025-04-21-12.20.20-e1745209316879-150x150.png");
+                })
+    
+                </script>
+<!--相关阅读 start-->
+          
+                                          <div class="xiangguan">
+                          <h3>相关阅读</h3>
+                            <ul id="tags_related">
+                                         <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2019/05/2702.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2019/05/7926a0d177374c42b9183c6909e13040-e1559018717458-300x174.jpeg" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2019/05/2702.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2019/05/2702.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2019/05/2702.html" target="_blank"></a><a href="https://www.qbitai.com/2019/05/2702.html" target="_blank">越来越像Linux了！Windows系统5月更新让Python开箱即用</a></h4>
+                              <p>有开发者已经在期待Windows 10原生支持git了。</p>
+                              <div class="info"><span class="author"><a href="/?author=5" target="_blank">晓查</a></span><span class="author"><span class="time">2019-05-28</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/python" rel="tag">Python</a> <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2025/04/271160.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/replace/22117d6273148ce6c0c1b28a9e1c06af.gif" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2025/04/271160.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2025/04/271160.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2025/04/271160.html" target="_blank"></a><a href="https://www.qbitai.com/2025/04/271160.html" target="_blank">整整157页，比尔盖茨亲自公开微软起家的源代码：Altair Basic</a></h4>
+                              <p>“我写过最酷的代码”</p>
+                              <div class="info"><span class="author"><a href="/?author=21" target="_blank">十三</a></span><span class="author"><span class="time">2025-04-05</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/basic" rel="tag">BASIC</a> <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a> <a href="https://www.qbitai.com/tag/%e6%af%94%e5%b0%94%e7%9b%96%e8%8c%a8" rel="tag">比尔盖茨</a> <a href="https://www.qbitai.com/tag/%e6%ba%90%e4%bb%a3%e7%a0%81" rel="tag">源代码</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2025/01/245569.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2025/01/-2025-01-17-124137-e1737106177755-300x175.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2025/01/245569.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2025/01/245569.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2025/01/245569.html" target="_blank"></a><a href="https://www.qbitai.com/2025/01/245569.html" target="_blank">材料界AlphaFold来了！微软AI模型登上Nature，还和中国团队合作发现新材料</a></h4>
+                              <p>CEO纳德拉亲自站台</p>
+                              <div class="info"><span class="author"><a href="/?author=47840" target="_blank">一水</a></span><span class="author"><span class="time">2025-01-17</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2021/09/28178.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2021/09/win11-e1630470175452.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2021/09/28178.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2021/09/28178.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2021/09/28178.html" target="_blank"></a><a href="https://www.qbitai.com/2021/09/28178.html" target="_blank">Windows 11正式版将于10月5日推出，说好的支持安卓程序没上车</a></h4>
+                              <p>Win10将支持到2025年。</p>
+                              <div class="info"><span class="author"><a href="/?author=36" target="_blank">丰色</a></span><span class="author"><span class="time">2021-09-01</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/windows-11" rel="tag">Windows 11</a> <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a> <a href="https://www.qbitai.com/tag/%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f" rel="tag">操作系统</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2019/06/2946.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2019/06/Screen-Shot-2019-06-09-at-2.41.01-PM-1440x900-e1560141215140-300x175.png" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2019/06/2946.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2019/06/2946.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2019/06/2946.html" target="_blank"></a><a href="https://www.qbitai.com/2019/06/2946.html" target="_blank">性能提升4倍，支持120帧8K显示，明年秋季上市！微软官方透露主机Scarlett细节</a></h4>
+                              <p>售价未知，明年秋季就能买到。</p>
+                              <div class="info"><span class="author"><a href="/?author=5" target="_blank">晓查</a></span><span class="author"><span class="time">2019-06-10</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                 <div class="picture_text">
+                          <div class="picture"><a href="https://www.qbitai.com/2022/10/38598.html" target="_blank">
+                            <img src="https://www.qbitai.com/wp-content/uploads/2022/10/Xnip2022-10-13_15-18-57-e1665645889820-300x175.jpg" alt="" title="">                          </a></div><a href="https://www.qbitai.com/2022/10/38598.html" target="_blank">
+                          </a><div class="text_box"><a href="https://www.qbitai.com/2022/10/38598.html" target="_blank">
+                              </a><h4><a href="https://www.qbitai.com/2022/10/38598.html" target="_blank"></a><a href="https://www.qbitai.com/2022/10/38598.html" target="_blank">微软全球超100项智能云创新，多项云服务落户中国新数据中心</a></h4>
+                              <p>Microsoft 365和Teams要有中国区了</p>
+                              <div class="info"><span class="author"><a href="/?author=32" target="_blank">梦晨</a></span><span class="author"><span class="time">2022-10-13</span><div class="tags_s">
+                                                                        <i></i>
+                                    <a href="https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af" rel="tag">微软</a>                                                                    </div></span></div>
+                          </div>
+                      </div>
+                
+                                              </ul>
+                      </div> 
+              
+            <!--相关阅读 end-->
+		</div>
+        <div class="content_right">
+           			<!--热门文章 start-->
+      <div class="yaowen">
+        <h3>热门文章</h3>
+                                <div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274055.html" target="_blank">
+<div class="picture"><img width="1" height="1" src="https://www.qbitai.com/wp-content/uploads/replace/cb55cbe7de63a30b58d13796d4ac40d3.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>英伟达含量为零！华为密集模型性能比肩DeepSeek-R1，纯昇腾集群训练</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274274.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>联想百应智能体入选量子位“2025年值得关注的AIGC产品”：国内首个AI服务智能体打破中小企业AI落地困局</h4></div>
+<div class="info">2025-04-16</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274535.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/WechatIMG111-e1744892815391-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>最强视觉生成模型获马斯克连夜关注，吉卜力风格转绘不再需要GPT了</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274533.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/2025-04-17-20.23.09-e1744892622644-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>DeepSeek引爆「万物皆可AI」时代，20余位大咖分析行业痛点，万字梳理干货在此</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/273623.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/0-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>GPT-4.1淘汰了4.5！全系列百万上下文，主打一个性价比</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div>                      </div>
+      <!-- 
+<form role="search" method="get" class="search-form" action="https://www.qbitai.com/">
+	<label>
+		<span class="screen-reader-text">搜索：</span>
+		<input type="search" class="search-field" placeholder="搜索…" value="" name="s" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">搜索</span></button>
+</form>
+ -->
+			<!--热门文章 end-->
+        </div>
+</div>
+
+
+<!--底部版权-->
+<div class="footer">
+	<div class="footer_con">
+        <div class="footer_r">
+        	<ul class="links"><li><a href="/?page_id=99" target="_blank">关于量子位</a></li><li><a href="/?page_id=101" target="_blank">加入我们</a></li><li><a href="/?page_id=103" target="_blank">寻求报道</a></li><li><a href="/?page_id=105" target="_blank">商务合作</a></li></ul>
+            
+            <div class="icon_btns">
+            <!-- <a href="/?page_id=183"target="_blank"><i class="weixin_icon"></i></a> -->
+            <a href="javascript:void(0)" class="footer_weixin"><div class="fa fa-weixin" id="biaojiwei2"><i class="weixin_icon"></i></div>
+    <div class="weixin_pop" id="popfoot" style="display:none">
+       <p>扫码关注量子位</p>
+       <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+    </div>
+</a>
+            <a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i class="weibo_icon"></i></a>
+            <a href="https://www.zhihu.com/org/liang-zi-wei-48/activities" target="_blank"><div class="share_zhihu"></div></a>
+            <a href="https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713" target="_blank"><div class="share_toutiao"></div></a>
+            </div>
+            <script type="text/javascript">
+         $('#biaojiwei2').click(function(){
+               $('#popfoot').show();
+                })
+             $('#popfoot').click(function(){
+               $('#popfoot').hide();
+                })
+        </script>
+        </div>
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"\u5c55\u5f00\u5b50\u83dc\u5355","collapse":"\u6298\u53e0\u5b50\u83dc\u5355"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/functions.js?ver=20160816"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/plugins/page-links-to/js/new-tab.min.js?ver=3.1.2"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/wp-embed.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js?ver=5.0.15"></script>
+	<script id="wxcs-script">
+	WX_Custom_Share = function(){
+		
+		var xhr = null;
+		var url = 'https://www.qbitai.com/wp-admin/admin-ajax.php';
+		var signature_url = window.location.href.split('#')[0];
+		var formData = {
+			action: 'wxcs_get_share_info',
+			type: 'post',
+			id: '275282',
+			signature_url: signature_url
+		};
+		
+		this.init = function(){
+			if( window.XMLHttpRequest ){
+				xhr = new XMLHttpRequest();
+			}
+			else if( window.ActiveXObject ){
+				xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			
+			get_share_info();
+		}
+		
+		function formatPostData( obj ){
+			
+			var arr = new Array();
+			for (var attr in obj ){
+				arr.push( encodeURIComponent( attr ) + '=' + encodeURIComponent( obj[attr] ) );
+			}
+			
+			return arr.join( '&' );
+		}
+		
+		function get_share_info(){
+			
+			if( xhr == null ) return;
+			
+			xhr.onreadystatechange = function(){
+				if( xhr.readyState == 4 && xhr.status == 200 ){
+					
+					var data = eval('(' + xhr.responseText + ')');
+					
+					if( data == null ){
+						return;
+					}
+					
+					var info = {
+						title: data.title,
+						summary: data.desc,
+						pic: data.img,
+						url: data.url
+					};
+					
+					if( formData.type == 'other' ){
+						info.title = document.title;
+						info.summary = location.href;
+						info.url = location.href;
+					}
+					
+					if( data.use_actual_url == true ){
+						info.url = location.href;
+					}
+
+					if( data.error ){
+						console.error( '自定义微信分享: ', data.error );
+					}
+					else if( data.appid ){
+						info.WXconfig = {
+							swapTitleInWX: data.swapTitleInWX,
+							appId: data.appid,
+							timestamp: data.timestamp,
+							nonceStr: data.nonceStr,
+							signature: data.signature
+						};
+					}
+					
+					setShareInfo( info );
+				}
+			};
+			
+			xhr.open( 'POST', url, true);
+			xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+			xhr.send( formatPostData( formData ) );
+		}
+	}
+	
+	new WX_Custom_Share().init();
+	</script>
+	<script>
+                        (function(){
+                            var bp = document.createElement('script');
+                            var curProtocol = window.location.protocol.split(':')[0];
+                            if (curProtocol === 'https') {
+                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                            }
+                            else {
+                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                            }
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(bp, s);
+                        })();
+                        </script>        <div class="footer_l">
+        	<div class="footer_logo"><a href="#" target="_blank"></a><span>追踪人工智能新趋势，报道科技行业新突破</span></div>
+            <div class="line3"></div>
+            <!--<p>量子位 QbitAI 版权所有&copy;北京极客伙伴科技有限公司 京ICP备17005886号-1</p>-->
+            <p>量子位 QbitAI 版权所有©北京极客伙伴科技有限公司 <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备17005886号-1</a></p>
+        </div>
+    </div>
+</div>
+
+
+</body></html>

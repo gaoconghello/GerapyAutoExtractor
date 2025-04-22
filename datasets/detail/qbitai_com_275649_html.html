@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="zh-CN" class="js" data-dpr="1" style="font-size: 54px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="shortcut icon" href="/wp-content/themes/liangziwei/imgnew/favicon.ico">
+        <link rel="pingback" href="https://www.qbitai.com/xmlrpc.php">
+        <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-6P7RXJKJRT&amp;cx=c&amp;_slc=1"></script><script src="https://zz.bdstatic.com/linksubmit/push.js"></script><script src="https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5"></script><script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机 | 量子位</title>
+
+<!-- All in One SEO Pack 2.12 by Michael Torbert of Semper Fi Web Design[506,561] -->
+<meta name="description" content="只要改动图片的细节，就能让系统在训练阶段直接崩溃">
+
+<meta name="keywords" content="高斯泼溅">
+
+<link rel="canonical" href="https://www.qbitai.com/2025/04/275649.html">
+			<script type="text/javascript">
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-138537228-1', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+			<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="量子位 » Feed" href="https://www.qbitai.com/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » 评论Feed" href="https://www.qbitai.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="量子位 » 3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机评论Feed" href="https://www.qbitai.com/2025/04/275649.html/feed">
+<link rel="stylesheet" id="wp-block-library-css" href="https://www.qbitai.com/wp-includes/css/dist/block-library/style.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style1-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/bootstrap.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style2-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/swiper.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style3-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/font-awesome.min.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style4-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/base.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style5-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style6-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/wbshare.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style7-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/zk_style.css?ver=5.0.15" type="text/css" media="all">
+<link rel="stylesheet" id="liangziwei-style8-css" href="https://www.qbitai.com/wp-content/themes/liangziwei/css/ai_style.css?ver=5.0.15" type="text/css" media="all">
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/popper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/bootstrap.offcanvas.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible_css.debug.js?ver=5.0.15"></script><style>@charset "utf-8";html{color:#000;background:#fff;/*overflow-y:scroll;*/-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/flexible.debug.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/swiper.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/qrcode.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/yao.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ScrollPic.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/zktag.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/jquery-1.7.1.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/ai_playBox.js?ver=5.0.15"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel="https://api.w.org/" href="https://www.qbitai.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.qbitai.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.qbitai.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="英伟达H20不让用？全国产算力推理模型升级，4张华为卡即可部署" href="https://www.qbitai.com/2025/04/275651.html">
+<link rel="next" title="21岁学生开发AI作弊工具被哥大停学，转入拿下530万美元融资" href="https://www.qbitai.com/2025/04/275835.html">
+<meta name="generator" content="WordPress 5.0.15">
+<link rel="shortlink" href="https://www.qbitai.com/?p=275649">
+<link rel="alternate" type="application/json+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275649.html">
+<link rel="alternate" type="text/xml+oembed" href="https://www.qbitai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.qbitai.com%2F2025%2F04%2F275649.html&amp;format=xml">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		    <!--[if IE 8]>
+        <link id="liangziwei-ie7-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie8_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <!--[if IE 9]>
+            <link id="liangziwei-ie8-css" rel="stylesheet" type="text/css" href="http://www.qbitai.com/wp-content/themes/liangziwei/css/ie9_style.css?ver=5.0.13"  media="all"/>
+    <![endif]-->
+    <script type="text/javascript">
+        $("#top_search").click(function(){
+            $("#search").toggle()
+        });
+        $(document).click(function(){
+            $(".weixin_pop").hide();
+        });
+    </script>
+    <style type="text/css">
+        blockquote {
+            margin: 1.4em 0;
+            padding-left: 1em;
+            color: #646464;
+            border-left: 3px solid #D3D3D3;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 40px;
+            margin-inline-end: 40px;
+        }
+    </style>
+</head>
+<body class="body-offcanvas" style="font-size: 12px;">
+<header class="top">
+    <div class="top_logo">
+        <div class="nav_box">
+                        <button type="button" class="navbar-toggle offcanvas-toggle js-offcanvas-has-events" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;"></button>
+            <nav class="navbar navbar-default navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-fade offcanvas-transform js-offcanas-done" role="navigation" id="js-bootstrap-offcanvas">
+                                    <div class="container-fluid"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav navbar-nav"><li id="menu-item-110" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-110"><a href="http://www.qbitai.com/">首页</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-107"><a href="https://www.qbitai.com/category/%e8%b5%84%e8%ae%af">资讯</a></li>
+<li id="menu-item-1907" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1907"><a href="https://www.qbitai.com/category/ebandeng">数码</a></li>
+<li id="menu-item-26804" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26804"><a href="https://www.qbitai.com/category/auto">智能车</a></li>
+<li id="menu-item-110561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-110561"><a href="https://www.qbitai.com/category/zhiku">智库</a></li>
+<li id="menu-item-17709" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17709"><a href="https://www.qbitai.com/category/huodong">活动</a></li>
+<li id="menu-item-10902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10902"><a href="https://www.qbitai.com/meet/meet2025/">MEET大会</a></li>
+<li id="menu-item-53733" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-53733"><a href="https://www.qbitai.com/meet/aigc2024/">AIGC</a></li>
+</ul></div>                            </nav>
+                    </div>
+        <div class="logo"><a href="https://www.qbitai.com/"></a></div>
+        <div class="top_r_icons">
+                        <div class="top_weixin"><a href="javascript:void(0)" class="biaojiwei"><i class="fa fa-weixin"></i></a>
+                                <div class="weixin_pop" style="display:none" id="pophead">
+               <p>扫码关注量子位</p>
+               <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+        </div>
+         </div>
+            <div class="top_weibo"><a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i></i></a></div>
+            
+<!--             <div class="top_search">
+                <form role="search" method="get" class="search-form" action="https://www.qbitai.com/" id="search">
+                <label>
+                    <input type="search" class="search-field" placeholder="搜索…" value="" name="s">
+                </label>
+                <button type="submit" class="search-submit"></button>
+                </form>
+            </div> -->
+        </div>
+        <script type="text/javascript">
+        $('.biaojiwei').click(function(){
+            $('.biaojiwei').click(function(event){
+                event.stopPropagation();
+                $('#pophead').show();
+            })
+            $('.weixin_pop').click(function(){
+                $('.weixin_pop').hide();
+            })
+        })
+        </script>
+        <div class="share_box">
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+		
+
+<div class="main">
+    	<div class="content">
+      <!-- articlead begin-->
+                    <!-- articlead end-->
+        	<div class="article">
+				     <h1>3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机</h1>
+    			   <div class="article_info">
+             <span class="author"><img src="http://www.qbitai.com/wp-content/themes/liangziwei/imagesnew/head.jpg" class="avatar avatar-200" height="200" width="200"><em><a href="https://www.qbitai.com/author/mengchen" title="由梦晨发布" rel="author">梦晨</a></em></span>
+                          <span class="date">2025-04-22</span>
+             <span class="time">15:13:09</span>
+          <span class="from">
+          来源：<a href="http://www.qbitai.com" target="blank" rel="nofllow">量子位</a>            </span></div>
+                          <!--摘要样式-->
+            <div class="zhaiyao"><p>只要改动图片的细节，就能让系统在训练阶段直接崩溃</p>
+</div>                			<blockquote class="pgc-blockquote-abstract">
+<p class="pgc-h-arrow-right" data-track="70">梦晨 发自 凹非寺<br class="sysbr">量子位 | 公众号 QbitAI</p>
+</blockquote>
+<p data-track="2">随着3D Gaussian Splatting（3DGS）成为新一代高效三维建模技术，它的自适应特性却悄然埋下了安全隐患。在本篇 ICLR 2025 Spotlight 论文中，研究者们提出首个专门针对3DGS的攻击方法——Poison-Splat，通过对输入图像加入扰动，即可显著拖慢训练速度、暴涨显存占用，甚至导致系统宕机。这一攻击不仅隐蔽、可迁移，还在现实平台中具备可行性，揭示了当前主流3D重建系统中一个未被重视的安全盲区。</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/046da0e94e6f28abb397e46b43083365.png" data-src="/wp-content/uploads/replace/046da0e94e6f28abb397e46b43083365.png"></div>
+<h1 class="pgc-h-arrow-right" data-track="3">引言：3D视觉的新时代与未设防的后门隐患</h1>
+<p data-track="4">过去两年，3D视觉技术经历了飞跃式发展，尤其是由 Kerbi等人在2023年提出的<strong>3D Gaussian Splatting (3DGS)</strong>，以其超高的渲染效率和拟真度，一跃成为<strong>替代NeRF的3D视觉主力军</strong>。</p>
+<p data-track="5">你是否用过 LumaAI、Spline 或者 Polycam 之类的应用上传图片生成三维模型？它们背后很多就用到了3DGS技术。3D高斯泼溅无需繁重的神经网络，仅靠一团团显式的、不固定数量的3D高斯点即可构建逼真的三维世界。</p>
+<p data-track="6">但你知道吗？这个看起来高效又灵活的“新王者”，居然隐藏着一个巨大的安全隐患——只要改动图片的细节，就能让系统在训练阶段直接崩溃！</p>
+<p data-track="7">来自新加坡国立大学和昆仑万维的研究者在 ICLR 2025上的Spotlight论文《Poison-Splat: Computation Cost Attack on 3D Gaussian Splatting》中，首次揭示了这一致命漏洞，并提出了首个针对3DGS计算复杂度的攻击算法：<strong>Poison-Splat</strong>。</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/1a97d456d0bbc365396573cdf8e6e18b.png" data-src="/wp-content/uploads/replace/1a97d456d0bbc365396573cdf8e6e18b.png"></div>
+<p data-track="8"><em>图一：干净（左）与Poison-Splat攻击后（右）的输入图像、三维高斯点云，以及GPU显存、训练时间和渲染速度的显著变化。这里的每张图片由像素表征（左上）和3DGS高斯点的可视化（右下）拼接而成，更好地展示其二维像素空间和三维高斯空间的变化。</em></p>
+<h1 class="pgc-h-arrow-right" data-track="9">问题背景：强大的模型“适应性”是优点，还是漏洞？</h1>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/bb87717bfbd0f06f27daad282ec5132c.png" data-src="/wp-content/uploads/replace/bb87717bfbd0f06f27daad282ec5132c.png"></div>
+<p data-track="10">图二：NeRF (左) 和 3D Gaussian Splatting (右) 分别引领了3D视觉的一个时代，但它们的核心思想却截然不同。NeRF (图a) 使用神经网络对三维场景隐式建模，其复杂度和计算成本由训练者通过超参数人为指定；而 3DGS (图b) 使用不固定数量的三维高斯对场景显式建模，其复杂度和计算成本会根据需要建模的三维内容进行自适应调整。</p>
+<p data-track="11">3D Gaussian Splatting 相比于NeRF最大的区别之一，就是它拥有自适应的模型复杂度：</p>
+<ul>
+<li data-track="12">训练过程中，模型会根据图像复杂度自动增加或减少高斯点（3D Gaussian）</li>
+<li data-track="13">图像越复杂，模型训练过程就会产生越多的高斯点 → 占用更多显存、需要更长训练时间</li>
+</ul>
+<p data-track="14">本质上，3DGS会智能地根据建模场景“细节多不多”来决定要分配多少计算资源。</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/6a88f687745f46ef6d3e6794d4f32276.png" data-src="/wp-content/uploads/replace/6a88f687745f46ef6d3e6794d4f32276.png"></div>
+<p data-track="15"><em>图三：计算成本（GPU显存占用、训练效率）、高斯点数量、数据集图像复杂度之间的强正相关关系。对于不同的数据集场景，(a) GPU显存占用和高斯点数量的关系；(b)训练耗时和高斯点数量的关系；(c) 高斯点数量和图片复杂程度(以Total Variation Score衡量)的关系。</em></p>
+<p data-track="16">这原本是一个很聪明的设计, 3DGS依靠其强大的适应性，可以让每一个参与训练的高斯点都“物尽其用”。</p>
+<p data-track="17">但问题来了，<strong>如果有人故意上传“带毒的复杂图像”，会发生什么？</strong></p>
+<h1 class="pgc-h-arrow-right" data-track="18">揭秘3DGS的复杂度漏洞：Poison-Splat攻击算法</h1>
+<p data-track="19"><strong>攻击目标：GPU占用率和训练时间</strong></p>
+<p data-track="20">设计一种扰动输入图像的方法，将经过扰动的图像作为3DGS的输入后，能够大幅增加训练成本（GPU显存和训练时长）。</p>
+<p data-track="21"><strong>问题建模：max-min双层优化问题</strong></p>
+<p data-track="22">我们可以将整个攻击建模成一个 max-min双层优化(bi-level optimization)问题：</p>
+<ul>
+<li data-track="23">内层(min)：3DGS 尝试还原三维场景，拟合各视角的输入图像。（正常训练）</li>
+<li data-track="24">外层(max)：攻击者试图找到最“消耗资源”的图像扰动方式。（攻击目标）</li>
+</ul>
+<p data-track="25">这类双层优化问题通常都极难直接求解。为此，研究者们提出了三大创新策略：</p>
+<p data-track="26"><strong>核心技术1：引入“代理模型”(proxy model) 作为内层近似器</strong></p>
+<ul>
+<li data-track="27">为了降低计算成本，我们训练一个轻量的代理 3DGS 模型，用于快速模拟 victim 的行为</li>
+<li data-track="28">每次攻击迭代时，从代理模型生成视图，再进行优化更新</li>
+<li data-track="29">保证多视角一致性（multi-view consistency），避免图像之间相互矛盾</li>
+</ul>
+<p data-track="30"><strong>核心技术2：利用图像“非光滑性”诱导高斯密度增长</strong></p>
+<ul>
+<li data-track="31">观察发现，3DGS 会在细节丰富/边缘突出的图像区域生成更多高斯点</li>
+<li data-track="32">Total Variation(TV)值是对图像“非光滑度”的一个很好的度量。因此我们最大化图像的 Total Variation(TV)值，从而诱导3DGS模型过度复杂。</li>
+</ul>
+<p data-track="33"><strong>核心技术3：约束扰动强度，提升攻击隐蔽性</strong></p>
+<ul>
+<li data-track="34">攻击图像若改动过大，容易被检测</li>
+<li data-track="35">借鉴对抗攻击领域的经典设定，攻击者可引入 L-∞球约束（ϵ-ball）控制每个像素最大扰动，确保图像语义完整、肉眼难以分辨</li>
+<li data-track="36">如果没有隐蔽性要求，攻击者可以无限制扰动输入图像，最大化攻击效果</li>
+<li data-track="37"></li>
+</ul>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/30e49ce3b3188c17fa889004d283b74e.png" data-src="/wp-content/uploads/replace/30e49ce3b3188c17fa889004d283b74e.png"></div>
+<p data-track="38"><em>图四：在约束条件下，攻击者的代理模型产生的变化被限制在像素扰动预算内，可以隐蔽地增加三维重建需要的计算消耗。</em></p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/ad9f4f0dc27e001dbc6962f12f6b6eaa.png" data-src="/wp-content/uploads/replace/ad9f4f0dc27e001dbc6962f12f6b6eaa.png"></div>
+<p data-track="39"><em>图五：无约束攻击中，攻击者使用的代理模型的三维表征不受限制地复杂化，使三维重建所需的计算成本大大增加。</em></p>
+<h1 class="pgc-h-arrow-right" data-track="40">实验结果：最高让训练时间翻倍、显存飙升20倍</h1>
+<p data-track="41">研究者在多个公开3D数据集（NeRF-Synthetic、Mip-NeRF360、Tanks and Temples）上评估了攻击效果。实验结果证实，对于危害最大的无限制攻击，其攻击效果令人震惊。在被攻击的最差3D场景下：</p>
+<ul>
+<li data-track="42"><strong>GPU显存：从原本不到4GB飙升到80GB（直接击穿主流显卡）</strong></li>
+<li data-track="43"><strong>训练时间：最长可达接近5倍增长</strong></li>
+<li data-track="44"><strong>高斯数量：最高可增加至原来的20倍+</strong></li>
+<li data-track="45"><strong>渲染速度：最坏可降至原来的1/10</strong></li>
+</ul>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/ab151ad5733cd639e41691d832d4f882.png" data-src="/wp-content/uploads/replace/ab151ad5733cd639e41691d832d4f882.png"></div>
+<p data-track="46"><em>图六：当攻击者可以无限制地对输入图像进行改动，可以带来极高的额外计算开销，对服务提供商造成重大的资源浪费。</em></p>
+<p data-track="47">就算对输入图片做了隐蔽性约束，当图片中每个像素的扰动都不得和干净图片偏离16个像素值时，其攻击效果仍然不容小觑，且隐蔽性更高，更加难以识别和检测：</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/96dd95a5e355606265bb9803d5601781.png" data-src="/wp-content/uploads/replace/96dd95a5e355606265bb9803d5601781.png"></div>
+<p data-track="48"><em>图七：在像素值扰动不超过16/255的约束下，部分场景能使显存消耗增高超过8倍，以至超过常见24GB显卡的显上限。</em></p>
+<p data-track="49"><strong>此外，攻击对黑盒模型同样有效（如 Scaffold-GS），表明它不仅“杀伤力强”，还具备“跨平台传染性”。</strong></p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/2e96ac2d081c67d981f2ed4b71ef7b2f.png" data-src="/wp-content/uploads/replace/2e96ac2d081c67d981f2ed4b71ef7b2f.png"></div>
+<p data-track="50"><em>图八：即使攻击者无法事先知道服务商具体的模型和参数，黑盒攻击也能产生效果。当攻击者针对原始3DGS算法进行Poison-splat攻击，产生的投毒数据对于Scaffold-GS这样的变体模型仍然有很好的攻击效果。</em></p>
+<h1 class="pgc-h-arrow-right" data-track="51">实际风险：这不是学术游戏，而是真实威胁</h1>
+<p data-track="52">现实中，很多3D服务商（如 Polycam、Kiri）都支持用户自由上传图像或视频进行建模。</p>
+<p data-track="53">这意味着：</p>
+<ul>
+<li data-track="54">攻击者可以伪装成普通用户提交“毒图”</li>
+<li data-track="55">在高峰时段导致系统“忙不过来”</li>
+<li data-track="56">若GPU资源被“毒图”霸占，其他用户任务将被拒绝执行，导致<strong>服务瘫痪（DoS）</strong></li>
+</ul>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/d1189fd042c736bb5b3464d3aa1b7379.png" data-src="/wp-content/uploads/replace/d1189fd042c736bb5b3464d3aa1b7379.png"></div>
+<p data-track="57"><em>图九：原始图像、约束攻击、无约束攻击作为输入时的计算代价对比。横坐标是3DGS模型拟合输入图片需要的训练时长，纵坐标是训练过程中GPU实时显存消耗。相比于原始图像，poison-splat攻击会大幅增加GPU显存占用和训练时长，让系统负载飙升。</em></p>
+<h1 class="pgc-h-arrow-right" data-track="58">意义与贡献：为何要“攻击”3DGS？</h1>
+<p data-track="59">提出风险不是在“捣乱”，而是在<strong>为AI系统打预防针</strong>。这项工作是：</p>
+<ul>
+<li data-track="60">首次系统性地揭示3DGS训练阶段的资源安全漏洞</li>
+<li data-track="61">首个在三维视觉中将“数据投毒”扩展到“训练资源消耗”这一维度</li>
+<li data-track="62">提出一套通用且具备可迁移性的攻击框架，推动 3D 安全领域发展</li>
+</ul>
+<p data-track="63">与此同时，研究者们也揭示了简单的防御（如限制高斯数量）<strong>无法有效应对攻击，且会严重降低模型重建精度，</strong>导致模型“学不好”，服务方依然无法交付高质量 3D 场景。</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/aa406ecb33a4ff6897fde2611fc33096.png" data-src="/wp-content/uploads/replace/aa406ecb33a4ff6897fde2611fc33096.png"></div>
+<p data-track="64"><em>图十：简单限制高斯点总量并不是理想的防御。虽然能限制资源消耗，但会严重影响3D重建的服务质量。如何设计更加智能的防御仍然是一个开放问题。</em></p>
+<p data-track="65">这些结果预示着，如果 3D 重建厂商没有相应防护，一旦有人“恶意上传”或“篡改”用户数据，系统很可能出现显存不足或训练无效。</p>
+<p data-track="66">目前该研究已将全部代码、数据处理流程、可复现实验开源，感兴趣的小伙伴可以在Github上查看</p>
+<div class="pgc-img"><img alt="3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机" class="syl-page-img" src="/wp-content/uploads/replace/6f7b4b1aa07334a3ed485f15da15f02f.png" data-src="/wp-content/uploads/replace/6f7b4b1aa07334a3ed485f15da15f02f.png"></div>
+<p data-track="67">在空间智能、世界模型更加需要依赖三维视觉的今天，讨论其算法的安全性也变得越来越重要。<br class="sysbr">在通往更强大AI的道路上，我们需要的不仅是性能的飞跃，还有安全的护栏。希望这篇工作能唤起大家对3D AI系统安全性的重视。</p>
+<p data-track="68">欢迎在留言区分享你的观点、疑问或补充！</p>
+<p data-track="69">论文链接：https://arxiv.org/pdf/2410.08190<br>
+GitHub：https://github.com/jiahaolu97/poison-splat</p>
+                
+                <!--版权声明-->
+                <div class="line_font"><span></span><em>版权所有，未经授权不得以任何形式转载及使用，违者必究。</em><span></span></div>
+            </div>
+     		<div class="tags"><a href="https://www.qbitai.com/tag/%e9%ab%98%e6%96%af%e6%b3%bc%e6%ba%85" rel="tag">高斯泼溅</a></div>
+            <!--作者文章列表-->
+    		<div class="person_box">
+            	<a href="#" target="_blank"></a><div class="person_head"><a href="#" target="_blank"><img src="http://www.qbitai.com/wp-content/themes/liangziwei/imagesnew/head.jpg" class="avatar avatar-1024" height="1024" width="1024"><span></span></a><a href="https://www.qbitai.com/author/mengchen" title="由梦晨发布" rel="author">梦晨</a></div>
+                <div class="person_con">
+                	<ul>
+                                          <li><a href="https://www.qbitai.com/2025/04/275634.html" rel="bookmark" title="PPIO姚欣：让免费成为可能，AI时代开启“提速降费”｜中国AIGC产业峰会" target="_blank">PPIO姚欣：让免费成为可能，AI时代开启“提速降费”｜中国AIGC产业峰会</a><i>2025-04-22</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/275507.html" rel="bookmark" title="o3/o4-mini幻觉暴增2-3倍！OpenAI官方承认暂无法解释原因" target="_blank">o3/o4-mini幻觉暴增2-3倍！OpenAI官方承认暂无法解释原因</a><i>2025-04-21</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/273093.html" rel="bookmark" title="手机实现GPT级智能，比MoE更极致的稀疏技术：省内存效果不减｜对话面壁&amp;清华肖朝军" target="_blank">手机实现GPT级智能，比MoE更极致的稀疏技术：省内存效果不减｜对话面壁&amp;清华肖朝军</a><i>2025-04-12</i></li>
+                                          <li><a href="https://www.qbitai.com/2025/04/272886.html" rel="bookmark" title="7B小模型写好学术论文，新框架告别AI引用幻觉，实测100%学生认可引用质量" target="_blank">7B小模型写好学术论文，新框架告别AI引用幻觉，实测100%学生认可引用质量</a><i>2025-04-11</i></li>
+                                      
+                    </ul>
+                </div>
+    		</div>
+            <!--左侧分享-->
+                        <div class="share_pc">
+            	<div class=" share_icon"></div>
+                <div class="share_weixin"><span id="weixin_qrcode"></span>
+        <div id="qrcode" style="display:none;" title="https://www.qbitai.com/2025/04/275649.html">扫码分享至朋友圈<canvas width="256" height="256" style="display: none;"></canvas><img alt="Scan me!" src="data:image/png;base64,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" style="display: block;"></div>
+        <div></div></div>
+
+                <a href="http://service.weibo.com/share/share.php?url=https://www.qbitai.com/2025/04/275649.html&amp;title=3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机&amp;appkey=4017757111&amp;searchPic=true&amp;ralateUid=6105753431" class="share_sina" data-cmd="tsina" title="分享到新浪微博" target="_blank"><div class="share_weibo"></div></a>
+                <a href=""><div class="share_qzone"></div></a>
+            </div>
+                        <script>
+                // 设置参数方式
+                var qrcode = new QRCode('qrcode', {
+                  text: 'https://www.qbitai.com/2025/04/275649.html',
+                  width: 256,
+                  height: 256,
+                  colorDark : '#000000',
+                  colorLight : '#ffffff',
+                  correctLevel : QRCode.CorrectLevel.H
+                });
+                </script>
+                <script>
+                var weixin_qrcode  = document.getElementById('weixin_qrcode');
+                var qrcode = document.getElementById('qrcode');
+                $(document).click(function(){
+                    $("#qrcode").hide();
+                });
+                weixin_qrcode.onclick = function(event){
+                    event.stopPropagation();
+                    var val = qrcode.style.display;
+                    if(val == 'none'){
+                        qrcode.style.display = 'block'; //显示
+                    }else{
+                        qrcode.style.display = 'none'; //隐藏
+                    }
+                }
+                qrcode.onclick = function(event){
+                        event.stopPropagation();
+                        qrcode.style.display = 'none'; //隐藏
+                }
+
+               
+
+                function shareToQq(title,url,picurl){
+                var shareqqzonestring='https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary='+title+'&url='+url+'&title='+title+'&pics='+picurl;
+                window.open(shareqqzonestring,'newwindow','height=400,width=400,top=100,left=100');
+                }
+                $('.share_qzone').click(function(e){
+                shareToQq("3D高斯泼溅算法大漏洞：数据投毒让GPU显存暴涨70GB，甚至服务器宕机","https://www.qbitai.com/2025/04/275649.html","https://www.qbitai.com/wp-content/uploads/2025/04/Xnip2025-04-22_15-04-15-e1745305966955-150x150.jpg");
+                })
+    
+                </script>
+<!--相关阅读 start-->
+          
+             
+            <!--相关阅读 end-->
+		</div>
+        <div class="content_right">
+           			<!--热门文章 start-->
+      <div class="yaowen">
+        <h3>热门文章</h3>
+                                <div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274055.html" target="_blank">
+<div class="picture"><img width="1" height="1" src="https://www.qbitai.com/wp-content/uploads/replace/cb55cbe7de63a30b58d13796d4ac40d3.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>英伟达含量为零！华为密集模型性能比肩DeepSeek-R1，纯昇腾集群训练</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274274.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/图片-1-2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>联想百应智能体入选量子位“2025年值得关注的AIGC产品”：国内首个AI服务智能体打破中小企业AI落地困局</h4></div>
+<div class="info">2025-04-16</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274535.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/WechatIMG111-e1744892815391-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>最强视觉生成模型获马斯克连夜关注，吉卜力风格转绘不再需要GPT了</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/274533.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/2025-04-17-20.23.09-e1744892622644-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>DeepSeek引爆「万物皆可AI」时代，20余位大咖分析行业痛点，万字梳理干货在此</h4></div>
+<div class="info">2025-04-17</div>
+</a>
+</div><div class="picture_text">
+<a href="https://www.qbitai.com/2025/04/273623.html" target="_blank">
+<div class="picture"><img width="150" height="150" src="https://www.qbitai.com/wp-content/uploads/2025/04/0-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" 0=""></div>
+<div class="text_box"><h4>GPT-4.1淘汰了4.5！全系列百万上下文，主打一个性价比</h4></div>
+<div class="info">2025-04-15</div>
+</a>
+</div>                      </div>
+      <!-- 
+<form role="search" method="get" class="search-form" action="https://www.qbitai.com/">
+	<label>
+		<span class="screen-reader-text">搜索：</span>
+		<input type="search" class="search-field" placeholder="搜索…" value="" name="s" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">搜索</span></button>
+</form>
+ -->
+			<!--热门文章 end-->
+        </div>
+</div>
+
+
+<!--底部版权-->
+<div class="footer">
+	<div class="footer_con">
+        <div class="footer_r">
+        	<ul class="links"><li><a href="/?page_id=99" target="_blank">关于量子位</a></li><li><a href="/?page_id=101" target="_blank">加入我们</a></li><li><a href="/?page_id=103" target="_blank">寻求报道</a></li><li><a href="/?page_id=105" target="_blank">商务合作</a></li></ul>
+            
+            <div class="icon_btns">
+            <!-- <a href="/?page_id=183"target="_blank"><i class="weixin_icon"></i></a> -->
+            <a href="javascript:void(0)" class="footer_weixin"><div class="fa fa-weixin" id="biaojiwei2"><i class="weixin_icon"></i></div>
+    <div class="weixin_pop" id="popfoot" style="display:none">
+       <p>扫码关注量子位</p>
+       <img src="/wp-content/uploads/2019/01/qrcode_QbitAI_1.jpg">
+    </div>
+</a>
+            <a href="https://weibo.com/qbitai?is_all=1" target="_blank"><i class="weibo_icon"></i></a>
+            <a href="https://www.zhihu.com/org/liang-zi-wei-48/activities" target="_blank"><div class="share_zhihu"></div></a>
+            <a href="https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713" target="_blank"><div class="share_toutiao"></div></a>
+            </div>
+            <script type="text/javascript">
+         $('#biaojiwei2').click(function(){
+               $('#popfoot').show();
+                })
+             $('#popfoot').click(function(){
+               $('#popfoot').hide();
+                })
+        </script>
+        </div>
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5a48fb280b334d499dae14e06d7bcbb5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"\u5c55\u5f00\u5b50\u83dc\u5355","collapse":"\u6298\u53e0\u5b50\u83dc\u5355"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/themes/liangziwei/js/functions.js?ver=20160816"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-content/plugins/page-links-to/js/new-tab.min.js?ver=3.1.2"></script>
+<script type="text/javascript" src="https://www.qbitai.com/wp-includes/js/wp-embed.min.js?ver=5.0.15"></script>
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js?ver=5.0.15"></script>
+	<script id="wxcs-script">
+	WX_Custom_Share = function(){
+		
+		var xhr = null;
+		var url = 'https://www.qbitai.com/wp-admin/admin-ajax.php';
+		var signature_url = window.location.href.split('#')[0];
+		var formData = {
+			action: 'wxcs_get_share_info',
+			type: 'post',
+			id: '275649',
+			signature_url: signature_url
+		};
+		
+		this.init = function(){
+			if( window.XMLHttpRequest ){
+				xhr = new XMLHttpRequest();
+			}
+			else if( window.ActiveXObject ){
+				xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			
+			get_share_info();
+		}
+		
+		function formatPostData( obj ){
+			
+			var arr = new Array();
+			for (var attr in obj ){
+				arr.push( encodeURIComponent( attr ) + '=' + encodeURIComponent( obj[attr] ) );
+			}
+			
+			return arr.join( '&' );
+		}
+		
+		function get_share_info(){
+			
+			if( xhr == null ) return;
+			
+			xhr.onreadystatechange = function(){
+				if( xhr.readyState == 4 && xhr.status == 200 ){
+					
+					var data = eval('(' + xhr.responseText + ')');
+					
+					if( data == null ){
+						return;
+					}
+					
+					var info = {
+						title: data.title,
+						summary: data.desc,
+						pic: data.img,
+						url: data.url
+					};
+					
+					if( formData.type == 'other' ){
+						info.title = document.title;
+						info.summary = location.href;
+						info.url = location.href;
+					}
+					
+					if( data.use_actual_url == true ){
+						info.url = location.href;
+					}
+
+					if( data.error ){
+						console.error( '自定义微信分享: ', data.error );
+					}
+					else if( data.appid ){
+						info.WXconfig = {
+							swapTitleInWX: data.swapTitleInWX,
+							appId: data.appid,
+							timestamp: data.timestamp,
+							nonceStr: data.nonceStr,
+							signature: data.signature
+						};
+					}
+					
+					setShareInfo( info );
+				}
+			};
+			
+			xhr.open( 'POST', url, true);
+			xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+			xhr.send( formatPostData( formData ) );
+		}
+	}
+	
+	new WX_Custom_Share().init();
+	</script>
+	<script>
+                        (function(){
+                            var bp = document.createElement('script');
+                            var curProtocol = window.location.protocol.split(':')[0];
+                            if (curProtocol === 'https') {
+                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                            }
+                            else {
+                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                            }
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(bp, s);
+                        })();
+                        </script>        <div class="footer_l">
+        	<div class="footer_logo"><a href="#" target="_blank"></a><span>追踪人工智能新趋势，报道科技行业新突破</span></div>
+            <div class="line3"></div>
+            <!--<p>量子位 QbitAI 版权所有&copy;北京极客伙伴科技有限公司 京ICP备17005886号-1</p>-->
+            <p>量子位 QbitAI 版权所有©北京极客伙伴科技有限公司 <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备17005886号-1</a></p>
+        </div>
+    </div>
+</div>
+
+
+</body></html>
