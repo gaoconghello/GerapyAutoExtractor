@@ -3,19 +3,27 @@ from gerapy_auto_extractor.classifiers.detail import is_detail
 import os
 from glob import glob
 import time
+import argparse
 
 if __name__ == '__main__':
+    # 解析命令行参数
+    parser = argparse.ArgumentParser(description='训练和验证页面分类器')
+    parser.add_argument('--train', action='store_true', help='是否进行训练')
+    args = parser.parse_args()
+
     # 创建分类器实例
     classifier = ListClassifier()
     
-    # 调用训练方法
-    print("开始训练分类器...")
-    classifier.train()
-    print("训练完成！")
-    
-    # 可以打印模型路径，方便查看
-    print(f"模型已保存到: {classifier.model_path}")
-    print(f"特征缩放器已保存到: {classifier.scaler_path}")
+    # 如果指定了--train参数，则进行训练
+    if args.train:
+        # 调用训练方法
+        print("开始训练分类器...")
+        classifier.train()
+        print("训练完成！")
+        
+        # 可以打印模型路径，方便查看
+        print(f"模型已保存到: {classifier.model_path}")
+        print(f"特征缩放器已保存到: {classifier.scaler_path}")
     
     # 验证模型在测试集上的准确率
     print("\n开始验证模型准确率...")
